@@ -292,6 +292,20 @@ def measure_fixture(name: str, rebuild: bool) -> dict:
 
 
 def run_frozen(rebuild: bool = False) -> int:
+    # Ground truth корпуса снят с разбором деревом. Без грамматик разбор
+    # уходит в регулярки, часть кейсов расходится — и красный выглядит как
+    # дефект метрики, хотя это отсутствующая зависимость. Говорим прямо.
+    try:
+        import tree_sitter  # noqa: F401
+        import tree_sitter_python  # noqa: F401
+    except ImportError:
+        print(
+            "frozen: нужен tree-sitter — ground truth снят с разбором деревом.\n"
+            "        pip install tree-sitter tree-sitter-python tree-sitter-typescript\n"
+            "        без него гоняй --unit --robust: они от грамматик не зависят",
+            file=sys.stderr,
+        )
+        return 1
     corpus = json.load(open(CORPUS, encoding="utf-8"))
     cases = corpus["cases"]
 

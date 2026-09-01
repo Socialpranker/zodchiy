@@ -1,0 +1,37 @@
+name: evals
+
+# The published tree runs its own suite. Two jobs on purpose: the frozen
+# corpus was recorded with tree parsing and is unreachable without grammars,
+# while installing the tool itself requires nothing outside the standard
+# library — the second job is what proves that claim.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "${{ matrix.python }}"
+      - run: pip install tree-sitter tree-sitter-python tree-sitter-typescript
+      - run: python3 evals/run_evals.py
+
+  stdlib-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      # No pip install: unit and robustness layers must hold on a bare interpreter.
+      - run: python3 evals/run_evals.py --unit --robust

@@ -1,5 +1,7 @@
 # zodchiy — architectural audit with measured materiality
 
+[![evals](https://github.com/Socialpranker/zodchiy/actions/workflows/evals.yml/badge.svg)](https://github.com/Socialpranker/zodchiy/actions/workflows/evals.yml)
+
 **Materiality is measured, not asserted.**
 
 Every architecture linter can tell you that a module has fan-in 40 or that
