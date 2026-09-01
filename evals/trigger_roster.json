@@ -1,0 +1,64 @@
+{
+  "_doc": "Каталог конкурентов для trigger-eval. Роутер скиллов выбирает не «подходит ли zodchiy», а «какой из этих подходит лучше» — замер без конкурентов мерил бы согласие модели, а не различающую силу описания. Описания даны целиком, без усечения: усечение чужих при полном своём — перекос в свою пользу. Описание zodchiy сюда НЕ вписано, оно читается живьём из frontmatter SKILL.md, иначе правка description не меняла бы результат.",
+  "_sources": "Описания взяты из каталога скиллов рабочей машины 2026-09-01; личные имена и пути убраны, смысл сохранён.",
+  "competitors": [
+    {
+      "name": "code-review",
+      "description": "Review the current diff, or a PR number/branch/path target, for correctness bugs and reuse/simplification/efficiency cleanups at the given effort level. Pass --comment to post findings as inline PR comments, or --fix to apply the findings to the working tree after the review."
+    },
+    {
+      "name": "fynd-dyrka",
+      "description": "Security review in seven layers: SAST, secrets, dependencies, IaC, DAST, external recon of a live service, and platform — the real state of the production deployment. Orchestrates semgrep/gitleaks/osv-scanner/trivy/nuclei and does what scanners cannot: logic flaws (auth bypass, IDOR, SSRF, races over money) confirmed by running them, availability and cost, observability, MITRE mapping, attack chains, and the agentic surface. Use on 'check the security', 'security audit', 'scan for vulnerabilities', 'pentest', 'is this code safe', and on indirect asks: 'give it a look before we deploy', 'is this ready for production'."
+    },
+    {
+      "name": "systematic-debugging",
+      "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes."
+    },
+    {
+      "name": "deepdive",
+      "description": "Meta-research под вопрос или решение: веб-поиск, источники, Q&A отчёт с цитатами по файлам для повторного использования. Использовать для деск-ресёрча, валидации гипотезы, «как устроен X». Триггеры: «deep research», «сделай ресёрч», «исследуй», «копни глубоко», «ресёрчни»."
+    },
+    {
+      "name": "design-modern",
+      "description": "Выбор направления дизайна до кода, спека под него и анти-слоп чек на выходе. Вызывать всегда при работе над видимым: UI, дашборд, лендинг, презентация, диаграмма, README. Триггеры: «без AI-слопа», «сделай современно/стильно», «выглядит шаблонно», именованный стиль (glassmorphism, bento)."
+    },
+    {
+      "name": "python-db",
+      "description": "Работа с БД в Python-проектах: asyncpg/SQLite без ORM, самописные миграции, типы на границе Python↔Postgres↔JSON. Вызывать когда пишешь или правишь SQL-запрос, репозиторий, миграцию; когда «добавь колонку», «новая миграция», «ALTER TABLE», «ON CONFLICT», «дедуп»; когда запрос висит или падает на $N-параметре."
+    },
+    {
+      "name": "brainstorming",
+      "description": "You MUST use this before any creative work — creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation."
+    },
+    {
+      "name": "test-driven-development",
+      "description": "Use when implementing any feature or bugfix, before writing implementation code."
+    },
+    {
+      "name": "handoff",
+      "description": "Handoff между сессиями. Вызывать: контекст сессии дошёл до 250k токенов; конец сессии или этапа плана, перед очисткой контекста; malformed tool call; дан handoff-файл."
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "description": "Справочник UI/UX: стили, палитры, шрифтовые пары, UX-правила, графики под стеки (React, SwiftUI). Брать после design-modern за деталями: палитра, спека компонента (кнопка, таблица), доступность, отступы."
+    },
+    {
+      "name": "writing-plans",
+      "description": "Use when you have a spec or requirements for a multi-step task, before touching code."
+    },
+    {
+      "name": "verification-before-completion",
+      "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs — requires running verification commands and confirming output before making any success claims."
+    }
+  ],
+  "control_variants": {
+    "broad": {
+      "description": "Инструмент для анализа кода. Строит отчёт по репозиторию и помогает разобраться в нём.",
+      "_doc": "Задумывался как бледный мутант — оказался просто более общим. На архитектурных запросах у него нет конкурента в каталоге, и он ловит ЛУЧШЕ настоящего описания. Как контроль живости замера не годится, оставлен как измеренный факт: перечисление триггеров проигрывает широкой формулировке на recall — и оно же держит FP, чего широкая не обещает."
+    },
+    "offdomain": {
+      "description": "Форматирование кода по стилю: отступы, переносы строк, порядок импортов, кавычки, настройка конфигурации форматтера и приведение файлов к единому виду.",
+      "_doc": "Контроль харнесса. Область чужая: если агент читает описание, recall обязан упасть к нулю. Если не падает — агент угадывает по формулировке запроса, и весь замер ничего не меряет."
+    }
+  }
+}

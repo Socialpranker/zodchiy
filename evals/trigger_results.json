@@ -1,0 +1,423 @@
+{
+  "baseline": {
+    "variant": "baseline",
+    "metrics": {
+      "train_recall": 1.0,
+      "train_fp": 0.0,
+      "test_recall": 0.8333333333333334,
+      "test_fp": 0.25
+    },
+    "rows": [
+      {
+        "id": "n01",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "code-review",
+        "ok": true,
+        "route_to": "code-review"
+      },
+      {
+        "id": "n02",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "fynd-dyrka",
+        "ok": true,
+        "route_to": "fynd-dyrka"
+      },
+      {
+        "id": "n03",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "systematic-debugging",
+        "ok": true,
+        "route_to": "superpowers:systematic-debugging"
+      },
+      {
+        "id": "n04",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "deepdive",
+        "ok": true,
+        "route_to": "deepdive"
+      },
+      {
+        "id": "n05",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "design-modern",
+        "ok": true,
+        "route_to": "design-modern"
+      },
+      {
+        "id": "n06",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "python-db",
+        "ok": true,
+        "route_to": "python-db"
+      },
+      {
+        "id": "n07",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "zodchiy",
+        "ok": false,
+        "route_to": null
+      },
+      {
+        "id": "n08",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "none",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t01",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t02",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t03",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t04",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t05",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t06",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t07",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t08",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t09",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t10",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t11",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t12",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "writing-plans",
+        "ok": false,
+        "route_to": null
+      }
+    ],
+    "verdict": "pass",
+    "reasons": []
+  },
+  "baseline_before": {
+    "variant": "baseline",
+    "metrics": {
+      "train_recall": 0.6666666666666666,
+      "train_fp": 0.0,
+      "test_recall": 0.6666666666666666,
+      "test_fp": 0.0
+    },
+    "rows": [
+      {
+        "id": "n01",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "code-review",
+        "ok": true,
+        "route_to": "code-review"
+      },
+      {
+        "id": "n02",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "fynd-dyrka",
+        "ok": true,
+        "route_to": "fynd-dyrka"
+      },
+      {
+        "id": "n03",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "test-driven-development",
+        "ok": true,
+        "route_to": "superpowers:systematic-debugging"
+      },
+      {
+        "id": "n04",
+        "split": "train",
+        "should_trigger": false,
+        "picked": "deepdive",
+        "ok": true,
+        "route_to": "deepdive"
+      },
+      {
+        "id": "n05",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "design-modern",
+        "ok": true,
+        "route_to": "design-modern"
+      },
+      {
+        "id": "n06",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "python-db",
+        "ok": true,
+        "route_to": "python-db"
+      },
+      {
+        "id": "n07",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "none",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "n08",
+        "split": "test",
+        "should_trigger": false,
+        "picked": "design-modern",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t01",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t02",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t03",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t04",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "fynd-dyrka",
+        "ok": false,
+        "route_to": null
+      },
+      {
+        "id": "t05",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "code-review",
+        "ok": false,
+        "route_to": null
+      },
+      {
+        "id": "t06",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t07",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t08",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t09",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t10",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t11",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "brainstorming",
+        "ok": false,
+        "route_to": null
+      },
+      {
+        "id": "t12",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "writing-plans",
+        "ok": false,
+        "route_to": null
+      }
+    ],
+    "verdict": "fail",
+    "reasons": [
+      "train_recall=0.67 < 0.8",
+      "test_recall=0.67 < 0.8"
+    ]
+  },
+  "sensitivity": {
+    "changed_cases": [
+      "n03",
+      "n07",
+      "n08",
+      "t04",
+      "t05",
+      "t11"
+    ]
+  },
+  "control": {
+    "variant": "offdomain",
+    "metrics": {
+      "train_recall": 0.5,
+      "train_fp": null,
+      "test_recall": 1.0,
+      "test_fp": null
+    },
+    "rows": [
+      {
+        "id": "t01",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t04",
+        "split": "train",
+        "should_trigger": true,
+        "picked": "none",
+        "ok": false,
+        "route_to": null
+      },
+      {
+        "id": "t07",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      },
+      {
+        "id": "t10",
+        "split": "test",
+        "should_trigger": true,
+        "picked": "zodchiy",
+        "ok": true,
+        "route_to": null
+      }
+    ],
+    "verdict": "порогами не судится",
+    "reasons": []
+  },
+  "harness_control": {
+    "ok": false,
+    "detail": "чужая область 0.75 против базы 1.00 на тех же кейсах при пороге 0.25"
+  },
+  "thresholds": {
+    "min_recall": 0.8,
+    "max_fp": 0.25,
+    "control_max_recall": 0.25
+  },
+  "description_measured": "Архитектурный аудит по трём осям: намерение, структура, поведение git-истории. Находка допускается, только когда измерена её цена. Вызывать при «разбери архитектуру», «где техдолг», «что рефакторить», «оцени кодовую базу», «изучи чужой репо», «стоит ли переписывать», перед крупным рефакторингом и при планировании миграции. Сюда же — жалобы на цену изменения, в которых слова «архитектура» нет: боимся трогать модуль, страшно менять, почему тут больно менять, одна правка задевает соседние файлы, каждый релиз ломается смежное. НЕ для: ревью диффа перед коммитом (code-review), поиска уязвимостей (fynd-dyrka) — даже когда речь о платежах и деньгах, отладки конкретного отказа (systematic-debugging), внешнего ресёрча (deepdive), UI (design-modern).",
+  "run": {
+    "date": "2026-09-01",
+    "executor": "субагенты Claude Code, по одному запросу на агента, изолированный контекст",
+    "model": "sonnet",
+    "repeats": 1,
+    "note": "Однократный прогон: разброс между повторами не измерен. Агент видит каталог и запрос, не видит ожидаемого ответа и не имеет доступа к файлу кейсов."
+  }
+}

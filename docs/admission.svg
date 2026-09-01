@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 268" width="720" height="268" role="img" aria-label="Admission rule: one axis is a hypothesis and stays out, two axes make a finding, three make a verdict">
+  <rect width="720" height="268" fill="#0B0B0C"/>
+  <g font-family="ui-serif, Georgia, 'Times New Roman', serif" fill="#F2EFE9">
+    <text x="40" y="52" font-size="19" letter-spacing="0.02em">A finding is admitted by convergence</text>
+  </g>
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="12.5">
+    <text x="40" y="80" fill="#6E6A63">intent &#183; structure &#183; behaviour &#8594; how many agree</text>
+
+    <rect x="40" y="106" width="196" height="118" fill="#141416"/>
+    <rect x="40" y="106" width="196" height="2" fill="#2A2A2C"/>
+    <text x="58" y="140" fill="#6E6A63" font-size="26">1</text>
+    <text x="58" y="168" fill="#F2EFE9">hypothesis</text>
+    <text x="58" y="190" fill="#6E6A63">stays out of the report</text>
+
+    <rect x="262" y="106" width="196" height="118" fill="#141416"/>
+    <rect x="262" y="106" width="196" height="2" fill="#B4532A"/>
+    <text x="280" y="140" fill="#B4532A" font-size="26">2</text>
+    <text x="280" y="168" fill="#F2EFE9">finding</text>
+    <text x="280" y="190" fill="#6E6A63">enters, missing axis named</text>
+
+    <rect x="484" y="106" width="196" height="118" fill="#141416"/>
+    <rect x="484" y="106" width="196" height="2" fill="#2A2A2C"/>
+    <text x="502" y="140" fill="#F2EFE9" font-size="26">3</text>
+    <text x="502" y="168" fill="#F2EFE9">verdict</text>
+    <text x="502" y="190" fill="#6E6A63">enough to base an ADR on</text>
+
+    <text x="40" y="250" fill="#6E6A63">cost comes from git history &#8212; a smell nobody pays for is not a finding</text>
+  </g>
+</svg>

@@ -490,21 +490,35 @@ def run_perf(budget_fixture: float = 10.0, budget_real: float = 30.0) -> int:
 
 
 def run_trigger() -> int:
-    """Материал для trigger-eval. Прогон требует модели — здесь только выкладка.
+    """Trigger-eval: материал для прогона и результат последнего прогона.
 
-    Врать «прошло» без модели нельзя: описание скилла ни разу не проверялось
-    эмпирически, и печать файла этого не меняет.
+    Сам прогон здесь не запускается — он требует модели. Печатается то, что
+    можно напечатать без неё: кейсы и вердикт из `trigger_results.json`,
+    записанного `trigger_run.py`. Отсутствие файла — не «ok», а «не мерено».
     """
     cases = json.load(open(TRIGGER, encoding="utf-8"))
     should = [c for c in cases["cases"] if c["should_trigger"]]
     should_not = [c for c in cases["cases"] if not c["should_trigger"]]
     print(f"trigger-eval: {len(should)} should + {len(should_not)} should-not")
-    print("Прогон — субагентами, по одному запросу на агента; см. evals/README.md.")
-    print("Автоматически здесь НЕ прогоняется: нужен вызов модели.\n")
-    for c in cases["cases"]:
-        mark = "+" if c["should_trigger"] else "−"
-        print(f"  {mark} [{c['id']}] {c['prompt']}")
-    return 0
+    print("Прогон: python3 evals/trigger_run.py --emit  →  агенты  →  --score")
+
+    results = os.path.join(HERE, "trigger_results.json")
+    if not os.path.exists(results):
+        print("Результата прогона нет — слой не мерен.")
+        return 1
+
+    r = json.load(open(results, encoding="utf-8"))
+    m = r["baseline"]["metrics"]
+    print(f"\nпоследний прогон: вердикт {r['baseline']['verdict']}")
+    print(f"  train recall {m['train_recall']:.2f} · fp {m['train_fp']:.2f}")
+    print(f"  test  recall {m['test_recall']:.2f} · fp {m['test_fp']:.2f}")
+    if "sensitivity" in r:
+        n = len(r["sensitivity"]["changed_cases"])
+        print(f"  чувствительность к описанию: {n} кейсов сменили исход после правки")
+    if "harness_control" in r:
+        c = r["harness_control"]
+        print(f"  контроль чужой областью: {'ok' if c['ok'] else 'FAIL'} — {c['detail']}")
+    return 0 if r["baseline"]["verdict"] == "pass" else 1
 
 
 def main():
