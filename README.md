@@ -16,41 +16,69 @@ there is an import cycle. None can tell you what it costs. A finding that
 cannot be priced does not enter the report — that single rule is what makes
 the output short enough to act on.
 
+The method itself is one page: **[DOCTRINE.md](DOCTRINE.md)** — what the audit
+requires at each step, the risk catalogue, the admission rule, and what the tool
+does when it cannot deliver.
+
 The name is Russian: *зодчий*, a master builder.
 
 ## What a run looks like
 
-One command, no model involved, no dependencies to install:
+Step one is a script. No model, no dependencies, and it is the whole
+measurement — everything after it is judgement built on top:
 
 ```sh
-python3 zodchiy.py measure /path/to/repo --out .zodchiy/measure.json
+git clone --filter=blob:none https://github.com/Textualize/rich /tmp/rich
+cd /tmp/rich && git checkout 9d8f9a372cc5
+python3 zodchiy.py measure /tmp/rich --since "20 years ago" --out measure.json
 ```
 
-The doctrine then turns that measurement into a report. Opening of a real one,
-produced on a repository nobody here maintains:
-
-```markdown
-# Audit report — Textualize/rich
-
-**Checklist: 5/6.** Step 6 (artefacts) was not performed: a current-state
-document, ADRs and a migration plan belong to the repository's maintainers.
-Steps 1–5 were performed in full; step 4 ran in degraded mode, declared below.
-
-| measured | 213 files, 750 edges, 1942 commits with code |
-| parser   | tree-sitter on 213 of 213 files, no regex fallback |
+```json
+{
+  "calibration_passed": true,
+  "blocked_metrics": [],
+  "confidence_ceiling": "verdict",
+  "commits_with_code": 1942,
+  "files": 213,
+  "edges": 750,
+  "runtime_cycles": 1,
+  "type_only_cycles": 1,
+  "containment": 0.672,
+  "coupling_pairs": 289
+}
 ```
 
-Every figure in every finding carries the path it came from, and a script
-refuses the report if the path does not resolve:
+Read the first three fields before the rest. `calibration_passed` false means
+the history is too thin to price anything, `blocked_metrics` names what could
+not be measured, and `confidence_ceiling` is the strongest verdict this run is
+allowed to reach. On a young repository the tool refuses most of its own
+metrics rather than reporting weak ones — that refusal is the product.
+
+Then the doctrine turns the measurement into findings. Here is one, taken
+verbatim from the ledger of that run rather than retold:
+
+| | |
+|---|---|
+| **Finding** | console.py concentrates the widest fan-in and the highest rework rate in the package |
+| **Risk** | R1, priority 1, confidence `finding` |
+| **Symptom** | 2699 LOC, 116 functions, max nesting 11, fan-in 110 — the 100th percentile of this repository. 463 edits, more than any other file, and a Wilson lower bound on the rework rate of 0.50: half of the changes to this file come back as a fix within days, against a repository-wide 0.263. |
+| **Remedy** | Extract the render pipeline (segment assembly and the render_* helpers) into its own module and leave Console a facade that delegates. An extraction with the public API unchanged, not a redesign. |
+| **Predicted gain** | Half of the change traffic to console.py stops returning as a fix within the week. |
+| **Falsifiable as** | `behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb <= 0.40 in the next measurement` |
+
+Where every one of those numbers came from:
 
 ```
-source: behavior.hotspots[file=rich/console.py].fix_share
-        structure.hubs[file=rich/console.py].fan_in
+  structure.hubs[file=rich/console.py].fan_in
+  structure.complex_files[file=rich/console.py].max_nesting
+  behavior.hotspots[file=rich/console.py].edits
+  behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb
+  behavior.stability.rework_rate
 ```
 
 **[`examples/rich/`](examples/rich/) is that run in full** — measurement,
-ledger, twelve refutation verdicts, report, SARIF. Read `report.md` first:
-the largest number in that measurement, a 50-file dependency cycle, is the one
+ledger, twelve refutation verdicts, report, SARIF. Read `report.md` first: the
+largest number in that measurement, a 50-file dependency cycle, is the one
 thing the report refuses to turn into a recommendation, because its cost could
 not be established.
 
@@ -168,6 +196,20 @@ No finding is issued before the full map is built.
 Prose cannot be told apart from a number recalled from memory; a path can be
 checked, and `zodchiy.py selfcheck` refuses a report whose numbers do not
 resolve.
+
+## What is where
+
+| Path | What it is |
+|---|---|
+| `SKILL.md` | the doctrine itself — the audit an agent executes. Russian, 23 KiB |
+| [`DOCTRINE.md`](DOCTRINE.md) | the same method in one English page |
+| `zodchiy.py` | the CLI: `measure`, `snapshot`, `diff`, `gate`, `add`, `refute`, `selfcheck`, `verify`, `export` |
+| `scripts/` | the measurement — `structure.py` (graph), `behavior.py` (history), `ledger.py` (findings, gate, export) |
+| `references/` | what the doctrine consults: risk catalogue, materiality gate, axis disagreement, refutation lenses, remedies, artefact templates |
+| [`examples/rich/`](examples/rich/) | one complete run over a foreign repository, held as a regression |
+| `evals/` | the regression suite — unit, frozen end-to-end, degenerate repositories, the live run, the description eval |
+| `schema/`, `dist/` | findings JSON schema; adapters generated from `SKILL.md` |
+| `SPEC.md` | why each rule is what it is — sources, calibration decisions, rejected alternatives |
 
 ## Adapters
 

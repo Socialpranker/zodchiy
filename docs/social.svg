@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640" role="img" aria-label="zodchiy — an architectural audit where a finding is admissible only once its cost is measured">
+  <rect width="1280" height="640" fill="#0B0B0C"/>
+  <rect x="0" y="0" width="1280" height="6" fill="#B4532A"/>
+  <g font-family="ui-serif, Georgia, 'Times New Roman', serif" fill="#F2EFE9">
+    <text x="96" y="230" font-size="104" letter-spacing="-0.01em">zodchiy</text>
+    <text x="96" y="316" font-size="40" fill="#F2EFE9">A finding is admissible only once</text>
+    <text x="96" y="368" font-size="40" fill="#B4532A">its cost has been measured.</text>
+  </g>
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="26" fill="#6E6A63">
+    <text x="96" y="452">intent &#183; structure &#183; behaviour &#8212; cost taken from git history</text>
+    <rect x="96" y="492" width="1088" height="1" fill="#2A2A2C"/>
+    <text x="96" y="546">1 axis &#8594; dropped</text>
+    <text x="420" y="546" fill="#F2EFE9">2 &#8594; finding</text>
+    <text x="680" y="546">3 &#8594; verdict</text>
+    <text x="916" y="546">MIT &#183; stdlib only</text>
+  </g>
+</svg>
