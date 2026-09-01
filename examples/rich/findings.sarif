@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "zodchiy",
+          "version": "1.0",
+          "informationUri": "https://github.com/zodchiy/zodchiy",
+          "rules": [
+            {
+              "id": "R1",
+              "name": "R1",
+              "shortDescription": {
+                "text": "console.py concentrates the widest fan-in and the highest rework rate in the package"
+              },
+              "helpUri": "https://github.com/zodchiy/zodchiy/blob/main/references/risks.md"
+            },
+            {
+              "id": "R5",
+              "name": "R5",
+              "shortDescription": {
+                "text": "a 50-file strongly connected component survives removing the package barrel"
+              },
+              "helpUri": "https://github.com/zodchiy/zodchiy/blob/main/references/risks.md"
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "R1",
+          "level": "note",
+          "message": {
+            "text": "console.py concentrates the widest fan-in and the highest rework rate in the package. 2699 LOC, 116 functions, max nesting 11, fan-in 110 — the 100th percentile of this repository. 463 edits, more than any other file, and a Wilson lower bound on the rework rate of 0.50: half of the changes to this file come back as a fix within days, against a repository-wide 0.263."
+          },
+          "partialFingerprints": {
+            "zodchiyFindingId": "F1"
+          },
+          "properties": {
+            "priority": 1,
+            "confidence": "finding",
+            "cost_pain": "rework_rate_lb 0.50 against 0.263 for the repository, on its most-edited file (463 edits, median fix latency 4.13 days)",
+            "remedy": "Extract the render pipeline (segment assembly and the render_* helpers) into its own module and leave Console a facade that delegates. An extraction with the public API unchanged, not a redesign.",
+            "remedy_cost": "High. 110 importers, and `from rich.console import Console` is the documented public surface — the split has to be invisible from outside.",
+            "gain": "Half of the change traffic to console.py stops returning as a fix within the week.",
+            "gain_metric": "manual",
+            "gain_target": "behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb <= 0.40 in the next measurement",
+            "source": [
+              "structure.hubs[file=rich/console.py].fan_in",
+              "structure.complex_files[file=rich/console.py].max_nesting",
+              "behavior.hotspots[file=rich/console.py].edits",
+              "behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb",
+              "behavior.stability.rework_rate"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rich/console.py"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "R1",
+          "level": "note",
+          "message": {
+            "text": "one function in pretty.py carries cyclomatic complexity 76. cyclomatic_per_function_max 76 with nesting 9 in a 1017-line file; the worst function starts at line 580. Fix share 0.19 over 156 edits puts the file in the 84th percentile of this repository for the share of edits that are fixes."
+          },
+          "partialFingerprints": {
+            "zodchiyFindingId": "F2"
+          },
+          "properties": {
+            "priority": 2,
+            "confidence": "finding",
+            "cost_pain": "fix_share 0.19 (84th percentile) across 156 edits — the file is not merely long, its edits are disproportionately corrective",
+            "remedy": "Replace the branch cascade in the function at line 580 with a dispatch table keyed by the node type it is switching on.",
+            "remedy_cost": "Moderate and contained in one file; the function has no callers outside the module.",
+            "gain": "The worst function drops below the McCabe threshold the catalogue uses for a per-function flag.",
+            "gain_metric": "manual",
+            "gain_target": "structure.complex_files[file=rich/pretty.py].cyclomatic_per_function_max <= 40 in the next measurement",
+            "source": [
+              "structure.complex_files[file=rich/pretty.py].cyclomatic_per_function_max",
+              "structure.complex_files[file=rich/pretty.py].worst_function_line",
+              "structure.complex_files[file=rich/pretty.py].max_nesting",
+              "behavior.hotspots[file=rich/pretty.py].fix_share_pct",
+              "behavior.hotspots[file=rich/pretty.py].edits"
+            ]
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "rich/pretty.py"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "R5",
+          "level": "note",
+          "message": {
+            "text": "a 50-file strongly connected component survives removing the package barrel. structure.cycles reports one runtime SCC of 53 files. Recomputing it with rich/__init__.py removed still leaves 50: the cycle is not an artefact of `from rich import ...` edges through the barrel, which is the usual explanation for a large SCC in a Python package."
+          },
+          "partialFingerprints": {
+            "zodchiyFindingId": "F3"
+          },
+          "properties": {
+            "priority": 3,
+            "confidence": "hypothesis",
+            "cost_pain": "Not established. The files inside the SCC are also the most edited files in the repository, so this measurement cannot separate the cost of the cycle from the cost of console.py being large.",
+            "remedy": "None proposed. A remedy for an unpriced problem is a guess, and the catalogue forbids issuing one.",
+            "remedy_cost": "Unknown — no remedy proposed.",
+            "gain": "Unmeasured. Recorded so the next run can tell whether the SCC shrinks on its own.",
+            "gain_metric": "cycle_members",
+            "gain_target": "<50",
+            "source": [
+              "structure.cycles[0].size",
+              "structure.files",
+              "structure.edges",
+              "structure.barrels"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "confidenceCeiling": "finding",
+        "ceilingReasons": [
+          "Шаг 4 шёл последовательно: одна модель, один проход, без независимых линз. Потолок уверенности — finding; статус verdict в этом прогоне недостижим."
+        ],
+        "refutationMode": "sequential",
+        "disclosure": "Шаг 4 шёл последовательно: одна модель, один проход, без независимых линз. Потолок уверенности — finding; статус verdict в этом прогоне недостижим."
+      }
+    }
+  ]
+}

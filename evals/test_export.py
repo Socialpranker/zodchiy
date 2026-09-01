@@ -9,6 +9,7 @@ Markdown отчёта пишет модель — его форма зависи
 
 from __future__ import annotations
 
+import csv
 import json
 import os
 import subprocess
@@ -218,6 +219,40 @@ class TestExportCli(unittest.TestCase):
         self.assertEqual(r.returncode, 1)
         self.assertIn("cost_pain", r.stderr)
 
+
+
+class TestListFieldsSurviveCsv(unittest.TestCase):
+    """`add` принимал массив, `export` читал его как repr и падал на валидации.
+
+    Дефект класса «приняли ввод, который сами же не читаем»: ошибка вылезала не
+    на записи, а через две команды. Пойман первым живым прогоном на чужом репо."""
+
+    def test_axes_list_round_trips(self):
+        import subprocess
+        import sys
+        import tempfile
+
+        skill = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        with tempfile.TemporaryDirectory() as d:
+            csv_path = os.path.join(d, "findings.csv")
+            rec = {
+                "id": "X1", "title": "t", "risk": "R1", "symptom": "s",
+                "axes": ["structure", "behavior"], "source": ["a.b", "c.d"],
+                "cost_pain": "p", "remedy": "r", "remedy_cost": "rc", "gain": "g",
+                "gain_metric": "manual", "gain_target": "x", "refutation": "-",
+                "confidence": "finding", "priority": 1,
+            }
+            r = subprocess.run(
+                [sys.executable, os.path.join(skill, "zodchiy.py"), "add",
+                 "--findings", csv_path, "--json", json.dumps(rec, ensure_ascii=False)],
+                capture_output=True, text=True, timeout=120,
+            )
+            self.assertEqual(r.returncode, 0, r.stderr)
+            with open(csv_path, encoding="utf-8") as fh:
+                row = next(csv.DictReader(fh))
+            self.assertEqual(row["axes"], "structure, behavior")
+            self.assertNotIn("[", row["axes"])
+            self.assertEqual(row["source"], "a.b; c.d")
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

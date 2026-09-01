@@ -54,6 +54,12 @@ repository you have just been handed — never run yet, see below).
 Out of a run you get: `measure.json`, a Markdown report, `findings.csv`,
 `baseline.json`, and machine-readable findings as JSON or SARIF 2.1.0.
 
+**[`examples/rich/`](examples/rich/) holds a complete run** on a repository
+nobody here maintains — measurement, ledger, twelve refutation verdicts,
+report, SARIF. Read `report.md` first: the largest number in that measurement,
+a 50-file dependency cycle, is the one thing the report refuses to turn into a
+recommendation, because its cost could not be established.
+
 ## What changes
 
 - **A refactor gets a price.** Not "there is a cycle in `billing`" but "this
@@ -164,7 +170,7 @@ from `SKILL.md` by `scripts/build_adapters.py`; do not edit `dist/` by hand.
 The same rule this tool applies to other people's code applies to its own
 claims. Verified:
 
-- 163 unit tests, green
+- 164 unit tests, green
 - 14 frozen end-to-end cases against ground truth, each `dirty`
   case paired with a `clean` one — without the pair, "found N" cannot be told
   apart from "found N plus ten false ones" (method borrowed from OWASP Benchmark)

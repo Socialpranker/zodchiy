@@ -1,0 +1,234 @@
+{
+  "tool": "zodchiy/findings",
+  "schema_version": "1.0",
+  "repo": "/tmp/zodchiy-example/rich",
+  "head": "9d8f9a372cc5",
+  "generated_from": "measure.json",
+  "confidence_ceiling": "finding",
+  "ceiling_reasons": [
+    "Шаг 4 шёл последовательно: одна модель, один проход, без независимых линз. Потолок уверенности — finding; статус verdict в этом прогоне недостижим."
+  ],
+  "refutation": {
+    "mode": "sequential",
+    "sequential_findings": [
+      "F1",
+      "F2",
+      "F3"
+    ],
+    "ceiling_cap": "finding",
+    "disclosure": "Шаг 4 шёл последовательно: одна модель, один проход, без независимых линз. Потолок уверенности — finding; статус verdict в этом прогоне недостижим."
+  },
+  "findings": [
+    {
+      "id": "F1",
+      "title": "console.py concentrates the widest fan-in and the highest rework rate in the package",
+      "risk": "R1",
+      "symptom": "2699 LOC, 116 functions, max nesting 11, fan-in 110 — the 100th percentile of this repository. 463 edits, more than any other file, and a Wilson lower bound on the rework rate of 0.50: half of the changes to this file come back as a fix within days, against a repository-wide 0.263.",
+      "axes": [
+        "structure",
+        "behavior"
+      ],
+      "source": [
+        {
+          "path": "structure.hubs[file=rich/console.py].fan_in",
+          "resolved": 110
+        },
+        {
+          "path": "structure.complex_files[file=rich/console.py].max_nesting",
+          "resolved": 11
+        },
+        {
+          "path": "behavior.hotspots[file=rich/console.py].edits",
+          "resolved": 463
+        },
+        {
+          "path": "behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb",
+          "resolved": 0.497
+        },
+        {
+          "path": "behavior.stability.rework_rate",
+          "resolved": 0.263
+        }
+      ],
+      "cost_pain": "rework_rate_lb 0.50 against 0.263 for the repository, on its most-edited file (463 edits, median fix latency 4.13 days)",
+      "cost_spread": "fan_in 110 of 213 files — every second file in the package imports it",
+      "priority": 1,
+      "remedy": "Extract the render pipeline (segment assembly and the render_* helpers) into its own module and leave Console a facade that delegates. An extraction with the public API unchanged, not a redesign.",
+      "remedy_cost": "High. 110 importers, and `from rich.console import Console` is the documented public surface — the split has to be invisible from outside.",
+      "gain": "Half of the change traffic to console.py stops returning as a fix within the week.",
+      "gain_metric": "manual",
+      "gain_target": "behavior.stability.unstable_files[file=rich/console.py].rework_rate_lb <= 0.40 in the next measurement",
+      "gain_direction": "down",
+      "refutation": "L1 argues a facade earns its fan-in; kept because the pain is measured on the behaviour axis rather than inferred from the fan-in. L4 is the real constraint and is recorded in remedy_cost.",
+      "confidence": "finding",
+      "files": [
+        "rich/console.py"
+      ],
+      "refutations": [
+        {
+          "lens": "L1 это норма",
+          "verdict": "survives",
+          "reason": "Console is a documented facade and structure.barrels does not list it, so the fan-in is intent — but intent does not explain rework_rate_lb 0.50 against 0.263 for the repository. The behavioural half of the finding is untouched by this lens.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L2 метрика меряет не то",
+          "verdict": "survives",
+          "reason": "calibration.passed is true, parser.backends is tree-sitter for all 213 files, and rework_rate_lb is the Wilson lower bound over 409 changes, not a raw share over a handful.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L3 цена завышена",
+          "verdict": "survives",
+          "reason": "The edits are spread across the whole window rather than a single migration: the file is top of hotspots by edits and top of unstable_files at the same time, and median fix latency is 4.13 days.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L4 лечение дороже болезни",
+          "verdict": "demoted",
+          "reason": "110 importers and a documented public API mean the extraction is expensive and can regress the surface. The finding stands, the priority does not justify doing it under time pressure — recorded in remedy_cost.",
+          "mode": "sequential"
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "title": "one function in pretty.py carries cyclomatic complexity 76",
+      "risk": "R1",
+      "symptom": "cyclomatic_per_function_max 76 with nesting 9 in a 1017-line file; the worst function starts at line 580. Fix share 0.19 over 156 edits puts the file in the 84th percentile of this repository for the share of edits that are fixes.",
+      "axes": [
+        "structure",
+        "behavior"
+      ],
+      "source": [
+        {
+          "path": "structure.complex_files[file=rich/pretty.py].cyclomatic_per_function_max",
+          "resolved": 76
+        },
+        {
+          "path": "structure.complex_files[file=rich/pretty.py].worst_function_line",
+          "resolved": 580
+        },
+        {
+          "path": "structure.complex_files[file=rich/pretty.py].max_nesting",
+          "resolved": 9
+        },
+        {
+          "path": "behavior.hotspots[file=rich/pretty.py].fix_share_pct",
+          "resolved": 84
+        },
+        {
+          "path": "behavior.hotspots[file=rich/pretty.py].edits",
+          "resolved": 156
+        }
+      ],
+      "cost_pain": "fix_share 0.19 (84th percentile) across 156 edits — the file is not merely long, its edits are disproportionately corrective",
+      "cost_spread": "Local. pretty.py is not in the hub list; the complexity is paid inside the file.",
+      "priority": 2,
+      "remedy": "Replace the branch cascade in the function at line 580 with a dispatch table keyed by the node type it is switching on.",
+      "remedy_cost": "Moderate and contained in one file; the function has no callers outside the module.",
+      "gain": "The worst function drops below the McCabe threshold the catalogue uses for a per-function flag.",
+      "gain_metric": "manual",
+      "gain_target": "structure.complex_files[file=rich/pretty.py].cyclomatic_per_function_max <= 40 in the next measurement",
+      "gain_direction": "down",
+      "refutation": "L2 checked: the threshold is per function, not per file, so the 1017 LOC do not carry the finding — 76 is one function.",
+      "confidence": "finding",
+      "files": [
+        "rich/pretty.py"
+      ],
+      "refutations": [
+        {
+          "lens": "L1 это норма",
+          "verdict": "survives",
+          "reason": "A pretty-printer dispatching over node types is expected to branch, but the catalogue's threshold is per function and 76 is one function, not the file's total.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L2 метрика меряет не то",
+          "verdict": "survives",
+          "reason": "cyclomatic_per_function_max is the field the threshold is defined on; worst_function_line points at a single function, so the number is not an artefact of file length.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L3 цена завышена",
+          "verdict": "survives",
+          "reason": "fix_share 0.19 sits in the 84th percentile of this repository over 156 edits — enough observations for the share to mean something.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L4 лечение дороже болезни",
+          "verdict": "survives",
+          "reason": "The change is contained in one module with no external callers of the function; remedy_cost is below cost_pain.",
+          "mode": "sequential"
+        }
+      ]
+    },
+    {
+      "id": "F3",
+      "title": "a 50-file strongly connected component survives removing the package barrel",
+      "risk": "R5",
+      "symptom": "structure.cycles reports one runtime SCC of 53 files. Recomputing it with rich/__init__.py removed still leaves 50: the cycle is not an artefact of `from rich import ...` edges through the barrel, which is the usual explanation for a large SCC in a Python package.",
+      "axes": [
+        "structure"
+      ],
+      "source": [
+        {
+          "path": "structure.cycles[0].size",
+          "resolved": 53
+        },
+        {
+          "path": "structure.files",
+          "resolved": 213
+        },
+        {
+          "path": "structure.edges",
+          "resolved": 750
+        },
+        {
+          "path": "structure.barrels",
+          "resolved": [
+            "rich/__init__.py",
+            "rich/_unicode_data/__init__.py"
+          ]
+        }
+      ],
+      "cost_pain": "Not established. The files inside the SCC are also the most edited files in the repository, so this measurement cannot separate the cost of the cycle from the cost of console.py being large.",
+      "cost_spread": "50 of 213 files cannot be isolated from one another",
+      "priority": 3,
+      "remedy": "None proposed. A remedy for an unpriced problem is a guess, and the catalogue forbids issuing one.",
+      "remedy_cost": "Unknown — no remedy proposed.",
+      "gain": "Unmeasured. Recorded so the next run can tell whether the SCC shrinks on its own.",
+      "gain_metric": "cycle_members",
+      "gain_target": "<50",
+      "gain_direction": "down",
+      "refutation": "L3 demoted it to a hypothesis: the pain that co-occurs with the SCC is fully explained by F1, and the measurement cannot attribute any of it to the cycle itself.",
+      "confidence": "hypothesis",
+      "refutations": [
+        {
+          "lens": "L1 это норма",
+          "verdict": "demoted",
+          "reason": "Mutual imports between a package root and its modules are idiomatic in Python, and two barrels are declared. Removing the barrel only drops the SCC from 53 to 50, so the shape is real — but 'real' is not 'costly'.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L2 метрика меряет не то",
+          "verdict": "survives",
+          "reason": "cycles[] holds runtime cycles only; cycles_type_only is reported separately and contains a different, 2-file component.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L3 цена завышена",
+          "verdict": "dropped",
+          "reason": "No cost can be attributed. Every file inside the SCC that shows pain is already explained by F1, and this measurement cannot separate the two. Without a price the catalogue does not admit the finding.",
+          "mode": "sequential"
+        },
+        {
+          "lens": "L4 лечение дороже болезни",
+          "verdict": "dropped",
+          "reason": "No remedy was proposed, so there is nothing to weigh. A remedy for an unpriced problem would be a guess.",
+          "mode": "sequential"
+        }
+      ]
+    }
+  ]
+}

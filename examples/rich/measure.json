@@ -1,0 +1,4989 @@
+{
+  "tool": "zodchiy/measure",
+  "repo": "/tmp/zodchiy-example/rich",
+  "snapshot": {
+    "repo": "/tmp/zodchiy-example/rich",
+    "branch": "main",
+    "head": "9d8f9a372cc5",
+    "worktree": "clean",
+    "since": "20 years ago"
+  },
+  "calibration": {
+    "passed": true,
+    "checks": [
+      {
+        "check": "глубина истории",
+        "passed": true,
+        "detail": "1942 коммитов с кодом",
+        "blocks": []
+      },
+      {
+        "check": "тесты отделены от кода",
+        "passed": true,
+        "detail": "правок кода 4073, тестов 1246 (23% от суммы)",
+        "blocks": []
+      },
+      {
+        "check": "точный разбор импортов",
+        "passed": true,
+        "detail": "tree-sitter 213 файлов, regex 0",
+        "blocks": []
+      },
+      {
+        "check": "граф импортов связен",
+        "passed": true,
+        "detail": "750 рёбер на 213 файлов (3.52 на файл)",
+        "blocks": []
+      },
+      {
+        "check": "порог сцепления различает",
+        "passed": true,
+        "detail": "289 пар выше порога на 1938 коммитов",
+        "blocks": []
+      }
+    ],
+    "blocked_metrics": [],
+    "note": "Все контрольные проверки прошли."
+  },
+  "confidence": {
+    "ceiling": "verdict",
+    "reasons": []
+  },
+  "behavior": {
+    "axis": "behavior",
+    "snapshot": {
+      "repo": "/tmp/zodchiy-example/rich",
+      "branch": "main",
+      "head": "9d8f9a372cc5",
+      "worktree": "clean",
+      "since": "20 years ago"
+    },
+    "available": true,
+    "commits_total": 3387,
+    "commits_with_code": 1942,
+    "churn_profile": {
+      "noise": 2981,
+      "code": 4073,
+      "test": 1246
+    },
+    "thresholds": {
+      "coupling_min_shared": 5,
+      "coupling_min_degree": 0.45,
+      "mega_commit_files": 25,
+      "min_commits": 60,
+      "knowledge_risk_share": 0.85,
+      "knowledge_risk_min_edits": 8,
+      "history_window": "18.months.ago",
+      "episode_gap_days": 3,
+      "rework_window_days": 14,
+      "rework_min_changes": 5,
+      "velocity_min_episodes": 3
+    },
+    "package_roots": [
+      "rich"
+    ],
+    "temporal_coupling": [
+      {
+        "a": "rich/tui/driver.py",
+        "b": "rich/tui/events.py",
+        "shared": 9,
+        "degree": 1.0,
+        "edits_a": 9,
+        "edits_b": 15,
+        "commits": [
+          "803651999",
+          "12b2a047a",
+          "c7427baae",
+          "8e6dbe540",
+          "068cb8655"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/tui/_timer.py",
+        "b": "rich/tui/events.py",
+        "shared": 6,
+        "degree": 1.0,
+        "edits_a": 6,
+        "edits_b": 15,
+        "commits": [
+          "803651999",
+          "068cb8655",
+          "9d97507b7",
+          "c719319d3",
+          "117a83433"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode11-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode12-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode12-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode13-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode14-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode15-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode15-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode16-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode17-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode4-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode5-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode5-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode5-2-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode6-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode6-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode6-2-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode6-3-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode7-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode8-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode10-0-0.py",
+        "b": "rich/_unicode_data/unicode9-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode12-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode12-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode13-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode14-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode15-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode15-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode16-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode17-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode4-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode5-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode5-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode5-2-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode6-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode6-1-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode6-2-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode6-3-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode7-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      },
+      {
+        "a": "rich/_unicode_data/unicode11-0-0.py",
+        "b": "rich/_unicode_data/unicode8-0-0.py",
+        "shared": 5,
+        "degree": 1.0,
+        "edits_a": 5,
+        "edits_b": 5,
+        "commits": [
+          "cbae9229a",
+          "219b4f2ee",
+          "494ce86a0",
+          "7001a52a3",
+          "72b0a9e96"
+        ],
+        "degree_pct": 100
+      }
+    ],
+    "temporal_coupling_total": 289,
+    "hotspots": [
+      {
+        "file": "rich/console.py",
+        "edits": 463,
+        "loc": 2698,
+        "score": 1249174,
+        "fix_commits": 58,
+        "fix_share": 0.125,
+        "edits_pct": 100,
+        "loc_pct": 99,
+        "fix_share_pct": 69,
+        "score_pct": 100
+      },
+      {
+        "file": "rich/progress.py",
+        "edits": 206,
+        "loc": 1716,
+        "score": 353496,
+        "fix_commits": 23,
+        "fix_share": 0.112,
+        "edits_pct": 99,
+        "loc_pct": 99,
+        "fix_share_pct": 65,
+        "score_pct": 99
+      },
+      {
+        "file": "rich/text.py",
+        "edits": 206,
+        "loc": 1363,
+        "score": 280778,
+        "fix_commits": 28,
+        "fix_share": 0.136,
+        "edits_pct": 99,
+        "loc_pct": 98,
+        "fix_share_pct": 70,
+        "score_pct": 99
+      },
+      {
+        "file": "rich/table.py",
+        "edits": 167,
+        "loc": 1015,
+        "score": 169505,
+        "fix_commits": 21,
+        "fix_share": 0.126,
+        "edits_pct": 98,
+        "loc_pct": 97,
+        "fix_share_pct": 69,
+        "score_pct": 98
+      },
+      {
+        "file": "rich/pretty.py",
+        "edits": 156,
+        "loc": 1016,
+        "score": 158496,
+        "fix_commits": 30,
+        "fix_share": 0.192,
+        "edits_pct": 97,
+        "loc_pct": 97,
+        "fix_share_pct": 84,
+        "score_pct": 97
+      },
+      {
+        "file": "rich/syntax.py",
+        "edits": 121,
+        "loc": 988,
+        "score": 119548,
+        "fix_commits": 25,
+        "fix_share": 0.207,
+        "edits_pct": 94,
+        "loc_pct": 96,
+        "fix_share_pct": 88,
+        "score_pct": 97
+      },
+      {
+        "file": "rich/markdown.py",
+        "edits": 146,
+        "loc": 802,
+        "score": 117092,
+        "fix_commits": 25,
+        "fix_share": 0.171,
+        "edits_pct": 97,
+        "loc_pct": 94,
+        "fix_share_pct": 80,
+        "score_pct": 96
+      },
+      {
+        "file": "rich/traceback.py",
+        "edits": 120,
+        "loc": 924,
+        "score": 110880,
+        "fix_commits": 22,
+        "fix_share": 0.183,
+        "edits_pct": 94,
+        "loc_pct": 95,
+        "fix_share_pct": 83,
+        "score_pct": 95
+      },
+      {
+        "file": "rich/segment.py",
+        "edits": 128,
+        "loc": 780,
+        "score": 99840,
+        "fix_commits": 20,
+        "fix_share": 0.156,
+        "edits_pct": 96,
+        "loc_pct": 93,
+        "fix_share_pct": 75,
+        "score_pct": 94
+      },
+      {
+        "file": "rich/style.py",
+        "edits": 124,
+        "loc": 796,
+        "score": 98704,
+        "fix_commits": 12,
+        "fix_share": 0.097,
+        "edits_pct": 95,
+        "loc_pct": 94,
+        "fix_share_pct": 60,
+        "score_pct": 94
+      },
+      {
+        "file": "rich/color.py",
+        "edits": 70,
+        "loc": 621,
+        "score": 43470,
+        "fix_commits": 5,
+        "fix_share": 0.071,
+        "edits_pct": 92,
+        "loc_pct": 85,
+        "fix_share_pct": 56,
+        "score_pct": 93
+      },
+      {
+        "file": "rich/panel.py",
+        "edits": 89,
+        "loc": 317,
+        "score": 28213,
+        "fix_commits": 9,
+        "fix_share": 0.101,
+        "edits_pct": 92,
+        "loc_pct": 72,
+        "fix_share_pct": 63,
+        "score_pct": 92
+      },
+      {
+        "file": "rich/live.py",
+        "edits": 68,
+        "loc": 404,
+        "score": 27472,
+        "fix_commits": 16,
+        "fix_share": 0.235,
+        "edits_pct": 90,
+        "loc_pct": 74,
+        "fix_share_pct": 92,
+        "score_pct": 92
+      },
+      {
+        "file": "rich/box.py",
+        "edits": 55,
+        "loc": 474,
+        "score": 26070,
+        "fix_commits": 4,
+        "fix_share": 0.073,
+        "edits_pct": 88,
+        "loc_pct": 79,
+        "fix_share_pct": 56,
+        "score_pct": 91
+      },
+      {
+        "file": "rich/cells.py",
+        "edits": 65,
+        "loc": 352,
+        "score": 22880,
+        "fix_commits": 15,
+        "fix_share": 0.231,
+        "edits_pct": 90,
+        "loc_pct": 73,
+        "fix_share_pct": 91,
+        "score_pct": 90
+      },
+      {
+        "file": "rich/logging.py",
+        "edits": 70,
+        "loc": 305,
+        "score": 21350,
+        "fix_commits": 8,
+        "fix_share": 0.114,
+        "edits_pct": 92,
+        "loc_pct": 70,
+        "fix_share_pct": 66,
+        "score_pct": 90
+      },
+      {
+        "file": "rich/default_styles.py",
+        "edits": 98,
+        "loc": 196,
+        "score": 19208,
+        "fix_commits": 4,
+        "fix_share": 0.041,
+        "edits_pct": 93,
+        "loc_pct": 64,
+        "fix_share_pct": 52,
+        "score_pct": 89
+      },
+      {
+        "file": "rich/_win32_console.py",
+        "edits": 25,
+        "loc": 661,
+        "score": 16525,
+        "fix_commits": 1,
+        "fix_share": 0.04,
+        "edits_pct": 78,
+        "loc_pct": 90,
+        "fix_share_pct": 51,
+        "score_pct": 88
+      },
+      {
+        "file": "rich/highlighter.py",
+        "edits": 61,
+        "loc": 232,
+        "score": 14152,
+        "fix_commits": 9,
+        "fix_share": 0.148,
+        "edits_pct": 89,
+        "loc_pct": 67,
+        "fix_share_pct": 73,
+        "score_pct": 88
+      },
+      {
+        "file": "rich/__main__.py",
+        "edits": 55,
+        "loc": 245,
+        "score": 13475,
+        "fix_commits": 9,
+        "fix_share": 0.164,
+        "edits_pct": 88,
+        "loc_pct": 68,
+        "fix_share_pct": 77,
+        "score_pct": 87
+      },
+      {
+        "file": "rich/layout.py",
+        "edits": 29,
+        "loc": 442,
+        "score": 12818,
+        "fix_commits": 1,
+        "fix_share": 0.034,
+        "edits_pct": 82,
+        "loc_pct": 77,
+        "fix_share_pct": 51,
+        "score_pct": 86
+      },
+      {
+        "file": "rich/align.py",
+        "edits": 39,
+        "loc": 320,
+        "score": 12480,
+        "fix_commits": 3,
+        "fix_share": 0.077,
+        "edits_pct": 85,
+        "loc_pct": 72,
+        "fix_share_pct": 57,
+        "score_pct": 85
+      },
+      {
+        "file": "rich/markup.py",
+        "edits": 47,
+        "loc": 251,
+        "score": 11797,
+        "fix_commits": 10,
+        "fix_share": 0.213,
+        "edits_pct": 86,
+        "loc_pct": 69,
+        "fix_share_pct": 88,
+        "score_pct": 85
+      },
+      {
+        "file": "rich/_emoji_codes.py",
+        "edits": 3,
+        "loc": 3610,
+        "score": 10830,
+        "fix_commits": 1,
+        "fix_share": 0.333,
+        "edits_pct": 22,
+        "loc_pct": 100,
+        "fix_share_pct": 97,
+        "score_pct": 84
+      },
+      {
+        "file": "rich/prompt.py",
+        "edits": 20,
+        "loc": 400,
+        "score": 8000,
+        "fix_commits": 7,
+        "fix_share": 0.35,
+        "edits_pct": 74,
+        "loc_pct": 74,
+        "fix_share_pct": 99,
+        "score_pct": 83
+      }
+    ],
+    "containment": {
+      "commits_considered": 1938,
+      "inside_one_layer": 1303,
+      "across_layers": 635,
+      "ratio": 0.672,
+      "layers_by_activity": {
+        "console.py": 463,
+        "progress.py": 206,
+        "text.py": 206,
+        "table.py": 167,
+        "pretty.py": 156,
+        "markdown.py": 146,
+        "examples": 140,
+        "segment.py": 128,
+        "style.py": 124,
+        "syntax.py": 121,
+        "traceback.py": 120,
+        "default_styles.py": 98,
+        "panel.py": 89,
+        "logging.py": 70,
+        "color.py": 70
+      },
+      "top_crossings": [
+        {
+          "layers": "default_styles.py + markdown.py",
+          "count": 8,
+          "share": 0.004,
+          "examples": [
+            {
+              "sha": "a9c4aaba7",
+              "subject": "support html inline"
+            },
+            {
+              "sha": "e9b0e1915",
+              "subject": "Update to markdown styles"
+            },
+            {
+              "sha": "3f316c5ed",
+              "subject": "Add support for strikethrough text"
+            }
+          ]
+        },
+        {
+          "layers": "default_styles.py + highlighter.py",
+          "count": 7,
+          "share": 0.004,
+          "examples": [
+            {
+              "sha": "2707a7343",
+              "subject": "Add Iso8601Highlighter"
+            },
+            {
+              "sha": "69003a772",
+              "subject": "[highlighter] Fine-tuning on complex numbers pattern matching"
+            },
+            {
+              "sha": "5e67e22ba",
+              "subject": "[highlighter] Extract more complex numbers pattern matching on its own one, rather than be"
+            }
+          ]
+        },
+        {
+          "layers": "default_styles.py + traceback.py",
+          "count": 6,
+          "share": 0.003,
+          "examples": [
+            {
+              "sha": "e6cdda5f7",
+              "subject": "Don't underline indentation"
+            },
+            {
+              "sha": "d6b917838",
+              "subject": "implement exception groups"
+            },
+            {
+              "sha": "f19b24682",
+              "subject": "render notes in traceback"
+            }
+          ]
+        },
+        {
+          "layers": "_export_format.py + console.py",
+          "count": 6,
+          "share": 0.003,
+          "examples": [
+            {
+              "sha": "80b5bcabf",
+              "subject": "improved SVG"
+            },
+            {
+              "sha": "2d4419548",
+              "subject": "svg fixes"
+            },
+            {
+              "sha": "fc5a1ad7b",
+              "subject": "replace tspans with text"
+            }
+          ]
+        },
+        {
+          "layers": "syntax.py + text.py",
+          "count": 6,
+          "share": 0.003,
+          "examples": [
+            {
+              "sha": "a25d286ac",
+              "subject": "fix line endings in syntax"
+            },
+            {
+              "sha": "d354d1778",
+              "subject": "rename method"
+            },
+            {
+              "sha": "a81c724dc",
+              "subject": "optimizations fix text to tabs"
+            }
+          ]
+        },
+        {
+          "layers": "console.py + segment.py",
+          "count": 5,
+          "share": 0.003,
+          "examples": [
+            {
+              "sha": "9992173c7",
+              "subject": "split lines terminator"
+            },
+            {
+              "sha": "76dfb9654",
+              "subject": "optimized divide"
+            },
+            {
+              "sha": "dc02178c0",
+              "subject": "add get_datetime"
+            }
+          ]
+        },
+        {
+          "layers": "console.py + table.py",
+          "count": 5,
+          "share": 0.003,
+          "examples": [
+            {
+              "sha": "53d21189c",
+              "subject": "typing fix"
+            },
+            {
+              "sha": "0aee98f6a",
+              "subject": "rule accepts Text now"
+            },
+            {
+              "sha": "cb58cfd5c",
+              "subject": "pull request template"
+            }
+          ]
+        },
+        {
+          "layers": "align.py + console.py",
+          "count": 4,
+          "share": 0.002,
+          "examples": [
+            {
+              "sha": "aba4c7b62",
+              "subject": "Added max height"
+            },
+            {
+              "sha": "b0908df47",
+              "subject": "remove height from options"
+            },
+            {
+              "sha": "54bf147e1",
+              "subject": "vertical align"
+            }
+          ]
+        },
+        {
+          "layers": "_log_render.py + logging.py",
+          "count": 4,
+          "share": 0.002,
+          "examples": [
+            {
+              "sha": "c235db44d",
+              "subject": "inverse option to not omit identical time values in log renderer"
+            },
+            {
+              "sha": "c4405f40f",
+              "subject": "add option to not omit identical time values in log renderer"
+            },
+            {
+              "sha": "8a6c910c2",
+              "subject": "used auto-width for level field"
+            }
+          ]
+        },
+        {
+          "layers": "console.py + rule.py",
+          "count": 4,
+          "share": 0.002,
+          "examples": [
+            {
+              "sha": "5dd17f389",
+              "subject": "improve coverage"
+            },
+            {
+              "sha": "4391f61b3",
+              "subject": "add deprecation warning"
+            },
+            {
+              "sha": "328b76cf5",
+              "subject": "optimise side_width construction"
+            }
+          ]
+        },
+        {
+          "layers": "console.py + live.py",
+          "count": 3,
+          "share": 0.002,
+          "examples": [
+            {
+              "sha": "82afcb4ff",
+              "subject": "test fixes"
+            },
+            {
+              "sha": "4968dce33",
+              "subject": "nested flag"
+            },
+            {
+              "sha": "70d8f9ad0",
+              "subject": "permit nested live"
+            }
+          ]
+        },
+        {
+          "layers": "panel.py + text.py",
+          "count": 3,
+          "share": 0.002,
+          "examples": [
+            {
+              "sha": "508c0086f",
+              "subject": "respect text.style in panels"
+            },
+            {
+              "sha": "066c024be",
+              "subject": "fix for text in panel title"
+            },
+            {
+              "sha": "25407fd23",
+              "subject": "doc"
+            }
+          ]
+        }
+      ]
+    },
+    "knowledge_risk": [
+      {
+        "file": "rich/text.py",
+        "owner": "Will McGugan",
+        "share": 0.91,
+        "edits": 210,
+        "contributors": 14
+      },
+      {
+        "file": "rich/table.py",
+        "owner": "Will McGugan",
+        "share": 0.894,
+        "edits": 170,
+        "contributors": 14
+      },
+      {
+        "file": "rich/segment.py",
+        "owner": "Will McGugan",
+        "share": 0.909,
+        "edits": 132,
+        "contributors": 9
+      },
+      {
+        "file": "rich/style.py",
+        "owner": "Will McGugan",
+        "share": 0.922,
+        "edits": 128,
+        "contributors": 10
+      },
+      {
+        "file": "rich/default_styles.py",
+        "owner": "Will McGugan",
+        "share": 0.867,
+        "edits": 98,
+        "contributors": 8
+      },
+      {
+        "file": "rich/panel.py",
+        "owner": "Will McGugan",
+        "share": 0.86,
+        "edits": 93,
+        "contributors": 10
+      },
+      {
+        "file": "rich/markup.py",
+        "owner": "Will McGugan",
+        "share": 0.88,
+        "edits": 50,
+        "contributors": 4
+      },
+      {
+        "file": "rich/padding.py",
+        "owner": "Will McGugan",
+        "share": 0.949,
+        "edits": 39,
+        "contributors": 2
+      },
+      {
+        "file": "rich/measure.py",
+        "owner": "Will McGugan",
+        "share": 0.852,
+        "edits": 27,
+        "contributors": 5
+      },
+      {
+        "file": "rich/tui/events.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 15,
+        "contributors": 1
+      },
+      {
+        "file": "rich/tui/app.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 14,
+        "contributors": 1
+      },
+      {
+        "file": "rich/constrain.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 14,
+        "contributors": 1
+      },
+      {
+        "file": "rich/_unicode_data/__init__.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 12,
+        "contributors": 1
+      },
+      {
+        "file": "rich/tui/message_pump.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 12,
+        "contributors": 1
+      },
+      {
+        "file": "rich/palette.py",
+        "owner": "Will McGugan",
+        "share": 0.909,
+        "edits": 11,
+        "contributors": 2
+      },
+      {
+        "file": "rich/tui/widget.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 11,
+        "contributors": 1
+      },
+      {
+        "file": "rich/_tools.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 11,
+        "contributors": 1
+      },
+      {
+        "file": "rich/file_proxy.py",
+        "owner": "Will McGugan",
+        "share": 0.9,
+        "edits": 10,
+        "contributors": 2
+      },
+      {
+        "file": "rich/tui/driver.py",
+        "owner": "Will McGugan",
+        "share": 1.0,
+        "edits": 9,
+        "contributors": 1
+      },
+      {
+        "file": "examples/table.py",
+        "owner": "Will McGugan",
+        "share": 0.875,
+        "edits": 8,
+        "contributors": 2
+      }
+    ],
+    "reverts": 10,
+    "velocity": {
+      "touch_cost": {
+        "median_files_per_commit": 1.0,
+        "p90_files_per_commit": 4,
+        "by_layer_median": {
+          "console.py": 1,
+          "progress.py": 1.0,
+          "pretty.py": 1,
+          "text.py": 1.0,
+          "markdown.py": 1.0,
+          "examples": 1,
+          "traceback.py": 1.0,
+          "segment.py": 1,
+          "syntax.py": 1.0,
+          "live.py": 1.0,
+          "style.py": 1,
+          "cells.py": 1,
+          "table.py": 1.0,
+          "logging.py": 1.0,
+          "panel.py": 1.0
+        }
+      },
+      "episodes": {
+        "total": 1931,
+        "median_commits": 1,
+        "median_span_days": 0.0,
+        "p90_span_days": 2.67,
+        "multi_commit_share": 0.367,
+        "median_span_days_multi": 1.12,
+        "median_commits_multi": 3
+      },
+      "slowest_files": [
+        {
+          "file": "rich/tui/app.py",
+          "episodes": 5,
+          "median_span_days": 3.0,
+          "median_commits": 3
+        },
+        {
+          "file": "rich/tui/message_pump.py",
+          "episodes": 4,
+          "median_span_days": 1.99,
+          "median_commits": 2.5
+        },
+        {
+          "file": "rich/tui/events.py",
+          "episodes": 6,
+          "median_span_days": 1.42,
+          "median_commits": 2.0
+        },
+        {
+          "file": "rich/_win32_console.py",
+          "episodes": 4,
+          "median_span_days": 1.27,
+          "median_commits": 5.0
+        },
+        {
+          "file": "rich/console.py",
+          "episodes": 114,
+          "median_span_days": 0.8,
+          "median_commits": 3.0
+        },
+        {
+          "file": "rich/_null_file.py",
+          "episodes": 3,
+          "median_span_days": 0.76,
+          "median_commits": 2
+        },
+        {
+          "file": "rich/tui/_timer.py",
+          "episodes": 4,
+          "median_span_days": 0.49,
+          "median_commits": 1.5
+        },
+        {
+          "file": "rich/_tools.py",
+          "episodes": 5,
+          "median_span_days": 0.39,
+          "median_commits": 2
+        },
+        {
+          "file": "rich/spinner.py",
+          "episodes": 12,
+          "median_span_days": 0.02,
+          "median_commits": 2.0
+        },
+        {
+          "file": "rich/text.py",
+          "episodes": 77,
+          "median_span_days": 0.01,
+          "median_commits": 2
+        },
+        {
+          "file": "examples/exception.py",
+          "episodes": 4,
+          "median_span_days": 0.01,
+          "median_commits": 1.5
+        },
+        {
+          "file": "rich/cjk.py",
+          "episodes": 3,
+          "median_span_days": 0.01,
+          "median_commits": 2
+        },
+        {
+          "file": "rich/region.py",
+          "episodes": 3,
+          "median_span_days": 0.01,
+          "median_commits": 2
+        },
+        {
+          "file": "rich/progress.py",
+          "episodes": 77,
+          "median_span_days": 0.0,
+          "median_commits": 1
+        },
+        {
+          "file": "rich/pretty.py",
+          "episodes": 68,
+          "median_span_days": 0.0,
+          "median_commits": 1.0
+        },
+        {
+          "file": "rich/segment.py",
+          "episodes": 64,
+          "median_span_days": 0.0,
+          "median_commits": 1.0
+        },
+        {
+          "file": "rich/syntax.py",
+          "episodes": 61,
+          "median_span_days": 0.0,
+          "median_commits": 1
+        },
+        {
+          "file": "rich/traceback.py",
+          "episodes": 58,
+          "median_span_days": 0.0,
+          "median_commits": 1.0
+        },
+        {
+          "file": "rich/table.py",
+          "episodes": 54,
+          "median_span_days": 0.0,
+          "median_commits": 1.0
+        },
+        {
+          "file": "rich/style.py",
+          "episodes": 51,
+          "median_span_days": 0.0,
+          "median_commits": 1
+        }
+      ]
+    },
+    "stability": {
+      "rework_rate": 0.263,
+      "changes_considered": 3576,
+      "fix_latency_median_days": 3.33,
+      "revert_commits": 10,
+      "revert_files_top": [
+        {
+          "file": "rich/text.py",
+          "reverts": 2
+        },
+        {
+          "file": "rich/console.py",
+          "reverts": 2
+        },
+        {
+          "file": "rich/pretty.py",
+          "reverts": 2
+        },
+        {
+          "file": "rich/control.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/traceback.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/spinner.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/status.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/_cell_widths.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/cells.py",
+          "reverts": 1
+        },
+        {
+          "file": "rich/emoji.py",
+          "reverts": 1
+        }
+      ],
+      "unstable_files": [
+        {
+          "file": "rich/console.py",
+          "changes": 409,
+          "reworked": 223,
+          "rework_rate": 0.545,
+          "rework_rate_lb": 0.497,
+          "fix_latency_median_days": 4.13,
+          "reverts": 2,
+          "rework_rate_pct": 100
+        },
+        {
+          "file": "rich/live.py",
+          "changes": 54,
+          "reworked": 31,
+          "rework_rate": 0.574,
+          "rework_rate_lb": 0.442,
+          "fix_latency_median_days": 4.75,
+          "reverts": 0,
+          "rework_rate_pct": 99
+        },
+        {
+          "file": "rich/markdown.py",
+          "changes": 125,
+          "reworked": 64,
+          "rework_rate": 0.512,
+          "rework_rate_lb": 0.425,
+          "fix_latency_median_days": 3.13,
+          "reverts": 0,
+          "rework_rate_pct": 98
+        },
+        {
+          "file": "rich/progress.py",
+          "changes": 187,
+          "reworked": 81,
+          "rework_rate": 0.433,
+          "rework_rate_lb": 0.364,
+          "fix_latency_median_days": 3.06,
+          "reverts": 1,
+          "rework_rate_pct": 97
+        },
+        {
+          "file": "rich/traceback.py",
+          "changes": 102,
+          "reworked": 45,
+          "rework_rate": 0.441,
+          "rework_rate_lb": 0.349,
+          "fix_latency_median_days": 5.93,
+          "reverts": 1,
+          "rework_rate_pct": 97
+        },
+        {
+          "file": "rich/containers.py",
+          "changes": 38,
+          "reworked": 18,
+          "rework_rate": 0.474,
+          "rework_rate_lb": 0.325,
+          "fix_latency_median_days": 3.99,
+          "reverts": 0,
+          "rework_rate_pct": 96
+        },
+        {
+          "file": "rich/pretty.py",
+          "changes": 130,
+          "reworked": 51,
+          "rework_rate": 0.392,
+          "rework_rate_lb": 0.313,
+          "fix_latency_median_days": 2.28,
+          "reverts": 2,
+          "rework_rate_pct": 95
+        },
+        {
+          "file": "rich/spinner.py",
+          "changes": 17,
+          "reworked": 9,
+          "rework_rate": 0.529,
+          "rework_rate_lb": 0.31,
+          "fix_latency_median_days": 5.24,
+          "reverts": 1,
+          "rework_rate_pct": 94
+        },
+        {
+          "file": "rich/table.py",
+          "changes": 149,
+          "reworked": 53,
+          "rework_rate": 0.356,
+          "rework_rate_lb": 0.283,
+          "fix_latency_median_days": 2.79,
+          "reverts": 1,
+          "rework_rate_pct": 93
+        },
+        {
+          "file": "rich/text.py",
+          "changes": 182,
+          "reworked": 61,
+          "rework_rate": 0.335,
+          "rework_rate_lb": 0.271,
+          "fix_latency_median_days": 3.97,
+          "reverts": 2,
+          "rework_rate_pct": 92
+        },
+        {
+          "file": "rich/_null_file.py",
+          "changes": 7,
+          "reworked": 4,
+          "rework_rate": 0.571,
+          "rework_rate_lb": 0.25,
+          "fix_latency_median_days": 0.73,
+          "reverts": 0,
+          "rework_rate_pct": 92
+        },
+        {
+          "file": "rich/segment.py",
+          "changes": 112,
+          "reworked": 36,
+          "rework_rate": 0.321,
+          "rework_rate_lb": 0.242,
+          "fix_latency_median_days": 5.64,
+          "reverts": 1,
+          "rework_rate_pct": 91
+        },
+        {
+          "file": "examples/export.py",
+          "changes": 5,
+          "reworked": 3,
+          "rework_rate": 0.6,
+          "rework_rate_lb": 0.231,
+          "fix_latency_median_days": 2.87,
+          "reverts": 0,
+          "rework_rate_pct": 90
+        },
+        {
+          "file": "rich/_windows.py",
+          "changes": 20,
+          "reworked": 8,
+          "rework_rate": 0.4,
+          "rework_rate_lb": 0.219,
+          "fix_latency_median_days": 0.09,
+          "reverts": 0,
+          "rework_rate_pct": 89
+        },
+        {
+          "file": "rich/syntax.py",
+          "changes": 100,
+          "reworked": 28,
+          "rework_rate": 0.28,
+          "rework_rate_lb": 0.201,
+          "fix_latency_median_days": 1.15,
+          "reverts": 0,
+          "rework_rate_pct": 88
+        },
+        {
+          "file": "rich/cells.py",
+          "changes": 52,
+          "reworked": 16,
+          "rework_rate": 0.308,
+          "rework_rate_lb": 0.199,
+          "fix_latency_median_days": 2.69,
+          "reverts": 1,
+          "rework_rate_pct": 87
+        },
+        {
+          "file": "rich/prompt.py",
+          "changes": 16,
+          "reworked": 6,
+          "rework_rate": 0.375,
+          "rework_rate_lb": 0.185,
+          "fix_latency_median_days": 1.34,
+          "reverts": 0,
+          "rework_rate_pct": 86
+        },
+        {
+          "file": "rich/layout.py",
+          "changes": 30,
+          "reworked": 9,
+          "rework_rate": 0.3,
+          "rework_rate_lb": 0.167,
+          "fix_latency_median_days": 5.87,
+          "reverts": 0,
+          "rework_rate_pct": 86
+        },
+        {
+          "file": "rich/__main__.py",
+          "changes": 48,
+          "reworked": 13,
+          "rework_rate": 0.271,
+          "rework_rate_lb": 0.166,
+          "fix_latency_median_days": 3.72,
+          "reverts": 0,
+          "rework_rate_pct": 85
+        },
+        {
+          "file": "rich/json.py",
+          "changes": 14,
+          "reworked": 5,
+          "rework_rate": 0.357,
+          "rework_rate_lb": 0.163,
+          "fix_latency_median_days": 0.96,
+          "reverts": 0,
+          "rework_rate_pct": 84
+        }
+      ]
+    }
+  },
+  "structure": {
+    "axis": "structure",
+    "parser": {
+      "tree_sitter": true,
+      "backends": {
+        "tree-sitter": 213
+      },
+      "grammars_missing": []
+    },
+    "files": 213,
+    "edges": 750,
+    "layers": {
+      "rich": 100,
+      "tests": 67,
+      "examples": 36,
+      "tools": 5,
+      "benchmarks": 3,
+      "docs": 1,
+      "setup.py": 1
+    },
+    "package_roots": [
+      "benchmarks",
+      "docs",
+      "examples",
+      "rich",
+      "tests",
+      "tools"
+    ],
+    "cycles": [
+      {
+        "size": 53,
+        "members": [
+          "rich/__init__.py",
+          "rich/__main__.py",
+          "rich/_extension.py",
+          "rich/_inspect.py",
+          "rich/_log_render.py",
+          "rich/_palettes.py",
+          "rich/_win32_console.py",
+          "rich/_windows.py",
+          "rich/_windows_renderer.py",
+          "rich/_wrap.py",
+          "rich/abc.py",
+          "rich/align.py"
+        ]
+      }
+    ],
+    "cycles_type_only": [
+      {
+        "size": 2,
+        "members": [
+          "rich/_unicode_data/__init__.py",
+          "rich/cells.py"
+        ]
+      }
+    ],
+    "type_only_edges": 39,
+    "adjacency": {
+      "benchmarks/benchmarks.py": [
+        "benchmarks/__init__.py",
+        "benchmarks/snippets.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/pretty.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/attrs.py": [
+        "rich/console.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/bars.py": [
+        "rich/__init__.py",
+        "rich/align.py",
+        "rich/bar.py",
+        "rich/color.py"
+      ],
+      "examples/columns.py": [
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/json.py",
+        "rich/panel.py"
+      ],
+      "examples/cp_progress.py": [
+        "rich/progress.py"
+      ],
+      "examples/downloader.py": [
+        "rich/progress.py"
+      ],
+      "examples/dynamic_progress.py": [
+        "rich/console.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py"
+      ],
+      "examples/exception.py": [
+        "rich/console.py"
+      ],
+      "examples/export.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/file_progress.py": [
+        "rich/progress.py"
+      ],
+      "examples/fullscreen.py": [
+        "rich/__init__.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py",
+        "rich/syntax.py",
+        "rich/table.py"
+      ],
+      "examples/group.py": [
+        "rich/__init__.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/group2.py": [
+        "rich/__init__.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/highlighter.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/theme.py"
+      ],
+      "examples/jobs.py": [
+        "rich/panel.py",
+        "rich/progress.py"
+      ],
+      "examples/justify.py": [
+        "rich/console.py"
+      ],
+      "examples/justify2.py": [
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/layout.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/live.py",
+        "rich/text.py"
+      ],
+      "examples/link.py": [
+        "rich/__init__.py"
+      ],
+      "examples/listdir.py": [
+        "rich/__init__.py",
+        "rich/columns.py",
+        "rich/text.py"
+      ],
+      "examples/live_progress.py": [
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py",
+        "rich/table.py"
+      ],
+      "examples/log.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/style.py",
+        "rich/theme.py"
+      ],
+      "examples/overflow.py": [
+        "rich/console.py"
+      ],
+      "examples/padding.py": [
+        "rich/__init__.py",
+        "rich/padding.py"
+      ],
+      "examples/print_calendar.py": [
+        "rich/__init__.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/rainbow.py": [
+        "rich/__init__.py",
+        "rich/highlighter.py"
+      ],
+      "examples/recursive_error.py": [
+        "rich/console.py"
+      ],
+      "examples/repr.py": [
+        "rich/__init__.py",
+        "rich/repr.py"
+      ],
+      "examples/save_table_svg.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/screen.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/spinners.py": [
+        "rich/columns.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/spinner.py",
+        "rich/text.py"
+      ],
+      "examples/status.py": [
+        "rich/console.py"
+      ],
+      "examples/suppress.py": [
+        "rich/traceback.py"
+      ],
+      "examples/table.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/table_movie.py": [
+        "rich/__init__.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/top_lite_simulator.py": [
+        "rich/__init__.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/table.py"
+      ],
+      "examples/tree.py": [
+        "rich/__init__.py",
+        "rich/filesize.py",
+        "rich/markup.py",
+        "rich/text.py",
+        "rich/tree.py"
+      ],
+      "rich/__init__.py": [
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py"
+      ],
+      "rich/__main__.py": [
+        "rich/__init__.py",
+        "rich/box.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/markdown.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_emoji_replace.py": [
+        "rich/_emoji_codes.py"
+      ],
+      "rich/_extension.py": [
+        "rich/pretty.py",
+        "rich/traceback.py"
+      ],
+      "rich/_inspect.py": [
+        "rich/console.py",
+        "rich/control.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_log_render.py": [
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_palettes.py": [
+        "rich/palette.py"
+      ],
+      "rich/_unicode_data/__init__.py": [
+        "rich/_unicode_data/_versions.py"
+      ],
+      "rich/_unicode_data/unicode10-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode11-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode12-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode12-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode13-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode14-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode15-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode15-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode16-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode17-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode4-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-2-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-2-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-3-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode7-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode8-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode9-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_win32_console.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/style.py"
+      ],
+      "rich/_windows.py": [
+        "rich/__init__.py",
+        "rich/_win32_console.py"
+      ],
+      "rich/_windows_renderer.py": [
+        "rich/_win32_console.py",
+        "rich/segment.py"
+      ],
+      "rich/_wrap.py": [
+        "rich/_loop.py",
+        "rich/cells.py",
+        "rich/console.py"
+      ],
+      "rich/abc.py": [
+        "rich/text.py"
+      ],
+      "rich/align.py": [
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/ansi.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/bar.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/box.py": [
+        "rich/__init__.py",
+        "rich/_loop.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/cells.py": [
+        "rich/_unicode_data/__init__.py"
+      ],
+      "rich/color.py": [
+        "rich/_palettes.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/repr.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/terminal_theme.py",
+        "rich/text.py"
+      ],
+      "rich/columns.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/console.py": [
+        "rich/__init__.py",
+        "rich/_emoji_replace.py",
+        "rich/_export_format.py",
+        "rich/_fileno.py",
+        "rich/_log_render.py",
+        "rich/_null_file.py",
+        "rich/_win32_console.py",
+        "rich/_windows.py",
+        "rich/_windows_renderer.py",
+        "rich/abc.py",
+        "rich/align.py",
+        "rich/cells.py",
+        "rich/color.py",
+        "rich/control.py",
+        "rich/emoji.py",
+        "rich/errors.py",
+        "rich/highlighter.py",
+        "rich/json.py",
+        "rich/jupyter.py",
+        "rich/markup.py",
+        "rich/measure.py",
+        "rich/pager.py",
+        "rich/pretty.py",
+        "rich/protocol.py",
+        "rich/region.py",
+        "rich/rule.py",
+        "rich/scope.py",
+        "rich/screen.py",
+        "rich/segment.py",
+        "rich/status.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/terminal_theme.py",
+        "rich/text.py",
+        "rich/theme.py",
+        "rich/themes.py",
+        "rich/traceback.py"
+      ],
+      "rich/constrain.py": [
+        "rich/jupyter.py",
+        "rich/measure.py"
+      ],
+      "rich/containers.py": [
+        "rich/cells.py",
+        "rich/measure.py",
+        "rich/text.py"
+      ],
+      "rich/control.py": [
+        "rich/console.py",
+        "rich/segment.py"
+      ],
+      "rich/default_styles.py": [
+        "rich/console.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/diagnose.py": [
+        "rich/__init__.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/pretty.py"
+      ],
+      "rich/emoji.py": [
+        "rich/_emoji_codes.py",
+        "rich/_emoji_replace.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/file_proxy.py": [
+        "rich/ansi.py",
+        "rich/text.py"
+      ],
+      "rich/highlighter.py": [
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/json.py",
+        "rich/text.py"
+      ],
+      "rich/json.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/text.py"
+      ],
+      "rich/jupyter.py": [
+        "rich/__init__.py",
+        "rich/segment.py",
+        "rich/terminal_theme.py"
+      ],
+      "rich/layout.py": [
+        "rich/_ratio.py",
+        "rich/abc.py",
+        "rich/align.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/region.py",
+        "rich/repr.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/table.py",
+        "rich/tree.py"
+      ],
+      "rich/live.py": [
+        "rich/__init__.py",
+        "rich/align.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/file_proxy.py",
+        "rich/jupyter.py",
+        "rich/live_render.py",
+        "rich/panel.py",
+        "rich/rule.py",
+        "rich/screen.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/live_render.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/logging.py": [
+        "rich/__init__.py",
+        "rich/_log_render.py",
+        "rich/_null_file.py",
+        "rich/highlighter.py",
+        "rich/text.py",
+        "rich/traceback.py"
+      ],
+      "rich/markdown.py": [
+        "rich/__init__.py",
+        "rich/_loop.py",
+        "rich/_stack.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/jupyter.py",
+        "rich/rule.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/markup.py": [
+        "rich/__init__.py",
+        "rich/_emoji_replace.py",
+        "rich/emoji.py",
+        "rich/errors.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/measure.py": [
+        "rich/__init__.py",
+        "rich/errors.py",
+        "rich/protocol.py"
+      ],
+      "rich/padding.py": [
+        "rich/__init__.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/pager.py": [
+        "rich/__main__.py",
+        "rich/abc.py",
+        "rich/console.py"
+      ],
+      "rich/palette.py": [
+        "rich/color.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/panel.py": [
+        "rich/align.py",
+        "rich/box.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/pretty.py": [
+        "rich/__init__.py",
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/abc.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/repr.py",
+        "rich/text.py"
+      ],
+      "rich/progress.py": [
+        "rich/__init__.py",
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/filesize.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress_bar.py",
+        "rich/rule.py",
+        "rich/spinner.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/progress_bar.py": [
+        "rich/color.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/prompt.py": [
+        "rich/__init__.py",
+        "rich/console.py",
+        "rich/text.py"
+      ],
+      "rich/protocol.py": [
+        "rich/console.py"
+      ],
+      "rich/repr.py": [
+        "rich/console.py"
+      ],
+      "rich/rule.py": [
+        "rich/align.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/scope.py": [
+        "rich/__init__.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/screen.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/segment.py": [
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/repr.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/text.py"
+      ],
+      "rich/spinner.py": [
+        "rich/_spinners.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/measure.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/status.py": [
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/spinner.py",
+        "rich/style.py"
+      ],
+      "rich/style.py": [
+        "rich/__init__.py",
+        "rich/color.py",
+        "rich/errors.py",
+        "rich/repr.py",
+        "rich/terminal_theme.py"
+      ],
+      "rich/styled.py": [
+        "rich/__init__.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/syntax.py": [
+        "rich/_loop.py",
+        "rich/abc.py",
+        "rich/cells.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/table.py": [
+        "rich/__init__.py",
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/_ratio.py",
+        "rich/_timer.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/protocol.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/terminal_theme.py": [
+        "rich/color_triplet.py",
+        "rich/palette.py"
+      ],
+      "rich/text.py": [
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/_wrap.py",
+        "rich/align.py",
+        "rich/ansi.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/control.py",
+        "rich/emoji.py",
+        "rich/jupyter.py",
+        "rich/markup.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/theme.py": [
+        "rich/default_styles.py",
+        "rich/style.py"
+      ],
+      "rich/themes.py": [
+        "rich/default_styles.py",
+        "rich/theme.py"
+      ],
+      "rich/traceback.py": [
+        "rich/__init__.py",
+        "rich/_loop.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/scope.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/text.py",
+        "rich/theme.py"
+      ],
+      "rich/tree.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/markdown.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/syntax.py",
+        "rich/table.py"
+      ],
+      "tests/render.py": [
+        "rich/console.py"
+      ],
+      "tests/test_align.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/measure.py"
+      ],
+      "tests/test_ansi.py": [
+        "rich/ansi.py",
+        "rich/console.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_bar.py": [
+        "rich/console.py",
+        "rich/progress_bar.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "tests/render.py"
+      ],
+      "tests/test_block_bar.py": [
+        "rich/bar.py",
+        "rich/console.py",
+        "tests/render.py"
+      ],
+      "tests/test_box.py": [
+        "rich/box.py",
+        "rich/console.py"
+      ],
+      "tests/test_card.py": [
+        "rich/__main__.py",
+        "rich/console.py",
+        "tests/_card_render.py"
+      ],
+      "tests/test_cells.py": [
+        "rich/__init__.py",
+        "rich/cells.py"
+      ],
+      "tests/test_color.py": [
+        "rich/color.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_color_triplet.py": [
+        "rich/color_triplet.py"
+      ],
+      "tests/test_columns.py": [
+        "rich/columns.py",
+        "rich/console.py"
+      ],
+      "tests/test_columns_align.py": [
+        "rich/__init__.py",
+        "rich/box.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "tests/test_console.py": [
+        "rich/__init__.py",
+        "rich/_null_file.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/pager.py",
+        "rich/panel.py",
+        "rich/region.py",
+        "rich/segment.py",
+        "rich/status.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_constrain.py": [
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/text.py"
+      ],
+      "tests/test_containers.py": [
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_control.py": [
+        "rich/control.py",
+        "rich/segment.py"
+      ],
+      "tests/test_emoji.py": [
+        "rich/emoji.py",
+        "tests/render.py"
+      ],
+      "tests/test_file_proxy.py": [
+        "rich/console.py",
+        "rich/file_proxy.py"
+      ],
+      "tests/test_filesize.py": [
+        "rich/__init__.py",
+        "rich/filesize.py"
+      ],
+      "tests/test_getfileno.py": [
+        "rich/_fileno.py"
+      ],
+      "tests/test_highlighter.py": [
+        "rich/highlighter.py",
+        "rich/json.py",
+        "rich/text.py"
+      ],
+      "tests/test_inspect.py": [
+        "rich/__init__.py",
+        "rich/_inspect.py",
+        "rich/console.py"
+      ],
+      "tests/test_json.py": [
+        "rich/json.py"
+      ],
+      "tests/test_jupyter.py": [
+        "rich/console.py"
+      ],
+      "tests/test_layout.py": [
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/panel.py"
+      ],
+      "tests/test_live.py": [
+        "rich/console.py",
+        "rich/live.py",
+        "rich/text.py"
+      ],
+      "tests/test_live_render.py": [
+        "rich/console.py",
+        "rich/live_render.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tests/test_log.py": [
+        "rich/console.py"
+      ],
+      "tests/test_logging.py": [
+        "rich/console.py",
+        "rich/logging.py"
+      ],
+      "tests/test_markdown.py": [
+        "rich/console.py",
+        "rich/markdown.py"
+      ],
+      "tests/test_markdown_no_hyperlinks.py": [
+        "rich/console.py",
+        "rich/markdown.py"
+      ],
+      "tests/test_markup.py": [
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/markup.py",
+        "rich/text.py"
+      ],
+      "tests/test_measure.py": [
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/text.py"
+      ],
+      "tests/test_null_file.py": [
+        "rich/_null_file.py"
+      ],
+      "tests/test_padding.py": [
+        "rich/console.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tests/test_palette.py": [
+        "rich/_palettes.py",
+        "rich/table.py"
+      ],
+      "tests/test_panel.py": [
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_pick.py": [
+        "rich/_pick.py"
+      ],
+      "tests/test_pretty.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/pretty.py",
+        "rich/text.py"
+      ],
+      "tests/test_progress.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/progress.py",
+        "rich/progress_bar.py",
+        "rich/text.py",
+        "tests/render.py"
+      ],
+      "tests/test_prompt.py": [
+        "rich/console.py",
+        "rich/prompt.py"
+      ],
+      "tests/test_protocol.py": [
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/text.py"
+      ],
+      "tests/test_ratio.py": [
+        "rich/_ratio.py"
+      ],
+      "tests/test_repr.py": [
+        "rich/console.py",
+        "rich/repr.py"
+      ],
+      "tests/test_rich_print.py": [
+        "rich/__init__.py",
+        "rich/console.py",
+        "rich/json.py"
+      ],
+      "tests/test_rule.py": [
+        "rich/console.py",
+        "rich/rule.py",
+        "rich/text.py"
+      ],
+      "tests/test_rule_in_table.py": [
+        "rich/__init__.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/rule.py",
+        "rich/table.py"
+      ],
+      "tests/test_screen.py": [
+        "rich/console.py",
+        "rich/screen.py"
+      ],
+      "tests/test_segment.py": [
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_spinner.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/rule.py",
+        "rich/spinner.py",
+        "rich/text.py"
+      ],
+      "tests/test_stack.py": [
+        "rich/_stack.py"
+      ],
+      "tests/test_status.py": [
+        "rich/console.py",
+        "rich/spinner.py",
+        "rich/status.py"
+      ],
+      "tests/test_style.py": [
+        "rich/__init__.py",
+        "rich/color.py",
+        "rich/errors.py",
+        "rich/style.py"
+      ],
+      "tests/test_styled.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/styled.py"
+      ],
+      "tests/test_syntax.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "tests/render.py"
+      ],
+      "tests/test_table.py": [
+        "rich/__init__.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "tests/test_text.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_theme.py": [
+        "rich/style.py",
+        "rich/theme.py"
+      ],
+      "tests/test_tools.py": [
+        "rich/_loop.py",
+        "rich/_ratio.py"
+      ],
+      "tests/test_traceback.py": [
+        "rich/console.py",
+        "rich/theme.py",
+        "rich/traceback.py"
+      ],
+      "tests/test_tree.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/tree.py"
+      ],
+      "tests/test_unicode_data.py": [
+        "rich/_unicode_data/__init__.py"
+      ],
+      "tests/test_win32_console.py": [
+        "rich/__init__.py",
+        "rich/_win32_console.py",
+        "rich/style.py"
+      ],
+      "tests/test_windows_renderer.py": [
+        "rich/_win32_console.py",
+        "rich/_windows_renderer.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tools/make_emoji.py": [
+        "rich/emoji.py"
+      ],
+      "tools/make_width_tables.py": [
+        "rich/cells.py"
+      ],
+      "tools/profile_divide.py": [
+        "rich/segment.py"
+      ],
+      "tools/profile_pretty.py": [
+        "rich/console.py",
+        "rich/json.py",
+        "rich/pretty.py"
+      ],
+      "tools/stress_test_pretty.py": [
+        "rich/_timer.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/pretty.py"
+      ]
+    },
+    "adjacency_through_barrels": {
+      "benchmarks/benchmarks.py": [
+        "benchmarks/__init__.py",
+        "benchmarks/snippets.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/pretty.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/attrs.py": [
+        "rich/console.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/bars.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/align.py",
+        "rich/bar.py",
+        "rich/color.py",
+        "rich/console.py"
+      ],
+      "examples/columns.py": [
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/json.py",
+        "rich/panel.py"
+      ],
+      "examples/cp_progress.py": [
+        "rich/progress.py"
+      ],
+      "examples/downloader.py": [
+        "rich/progress.py"
+      ],
+      "examples/dynamic_progress.py": [
+        "rich/console.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py"
+      ],
+      "examples/exception.py": [
+        "rich/console.py"
+      ],
+      "examples/export.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/file_progress.py": [
+        "rich/progress.py"
+      ],
+      "examples/fullscreen.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py",
+        "rich/syntax.py",
+        "rich/table.py"
+      ],
+      "examples/group.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/group2.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/highlighter.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/theme.py"
+      ],
+      "examples/jobs.py": [
+        "rich/panel.py",
+        "rich/progress.py"
+      ],
+      "examples/justify.py": [
+        "rich/console.py"
+      ],
+      "examples/justify2.py": [
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/layout.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/live.py",
+        "rich/text.py"
+      ],
+      "examples/link.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py"
+      ],
+      "examples/listdir.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/text.py"
+      ],
+      "examples/live_progress.py": [
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress.py",
+        "rich/table.py"
+      ],
+      "examples/log.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/style.py",
+        "rich/theme.py"
+      ],
+      "examples/overflow.py": [
+        "rich/console.py"
+      ],
+      "examples/padding.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/padding.py"
+      ],
+      "examples/print_calendar.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/rainbow.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/highlighter.py"
+      ],
+      "examples/recursive_error.py": [
+        "rich/console.py"
+      ],
+      "examples/repr.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/repr.py"
+      ],
+      "examples/save_table_svg.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/screen.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "examples/spinners.py": [
+        "rich/columns.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/spinner.py",
+        "rich/text.py"
+      ],
+      "examples/status.py": [
+        "rich/console.py"
+      ],
+      "examples/suppress.py": [
+        "rich/traceback.py"
+      ],
+      "examples/table.py": [
+        "rich/console.py",
+        "rich/table.py"
+      ],
+      "examples/table_movie.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "examples/top_lite_simulator.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/table.py"
+      ],
+      "examples/tree.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/filesize.py",
+        "rich/markup.py",
+        "rich/text.py",
+        "rich/tree.py"
+      ],
+      "rich/__init__.py": [
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py"
+      ],
+      "rich/__main__.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/box.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/markdown.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_emoji_replace.py": [
+        "rich/_emoji_codes.py"
+      ],
+      "rich/_extension.py": [
+        "rich/pretty.py",
+        "rich/traceback.py"
+      ],
+      "rich/_inspect.py": [
+        "rich/console.py",
+        "rich/control.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_log_render.py": [
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/_palettes.py": [
+        "rich/palette.py"
+      ],
+      "rich/_unicode_data/__init__.py": [
+        "rich/_unicode_data/_versions.py",
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode10-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode11-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode12-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode12-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode13-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode14-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode15-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode15-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode16-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode17-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode4-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode5-2-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-1-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-2-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode6-3-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode7-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode8-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_unicode_data/unicode9-0-0.py": [
+        "rich/cells.py"
+      ],
+      "rich/_win32_console.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/style.py"
+      ],
+      "rich/_windows.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_win32_console.py",
+        "rich/console.py"
+      ],
+      "rich/_windows_renderer.py": [
+        "rich/_win32_console.py",
+        "rich/segment.py"
+      ],
+      "rich/_wrap.py": [
+        "rich/_loop.py",
+        "rich/cells.py",
+        "rich/console.py"
+      ],
+      "rich/abc.py": [
+        "rich/text.py"
+      ],
+      "rich/align.py": [
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/ansi.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/bar.py": [
+        "rich/color.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/box.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_loop.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/cells.py": [
+        "rich/_unicode_data/__init__.py",
+        "rich/_unicode_data/_versions.py"
+      ],
+      "rich/color.py": [
+        "rich/_palettes.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/repr.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/terminal_theme.py",
+        "rich/text.py"
+      ],
+      "rich/columns.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/console.py": [
+        "rich/__init__.py",
+        "rich/_emoji_replace.py",
+        "rich/_export_format.py",
+        "rich/_extension.py",
+        "rich/_fileno.py",
+        "rich/_inspect.py",
+        "rich/_log_render.py",
+        "rich/_null_file.py",
+        "rich/_win32_console.py",
+        "rich/_windows.py",
+        "rich/_windows_renderer.py",
+        "rich/abc.py",
+        "rich/align.py",
+        "rich/cells.py",
+        "rich/color.py",
+        "rich/control.py",
+        "rich/emoji.py",
+        "rich/errors.py",
+        "rich/highlighter.py",
+        "rich/json.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/markup.py",
+        "rich/measure.py",
+        "rich/pager.py",
+        "rich/pretty.py",
+        "rich/protocol.py",
+        "rich/region.py",
+        "rich/rule.py",
+        "rich/scope.py",
+        "rich/screen.py",
+        "rich/segment.py",
+        "rich/status.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/terminal_theme.py",
+        "rich/text.py",
+        "rich/theme.py",
+        "rich/themes.py",
+        "rich/traceback.py"
+      ],
+      "rich/constrain.py": [
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py"
+      ],
+      "rich/containers.py": [
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/text.py"
+      ],
+      "rich/control.py": [
+        "rich/console.py",
+        "rich/segment.py"
+      ],
+      "rich/default_styles.py": [
+        "rich/console.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/diagnose.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/pretty.py"
+      ],
+      "rich/emoji.py": [
+        "rich/_emoji_codes.py",
+        "rich/_emoji_replace.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/file_proxy.py": [
+        "rich/ansi.py",
+        "rich/console.py",
+        "rich/text.py"
+      ],
+      "rich/highlighter.py": [
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/json.py",
+        "rich/text.py"
+      ],
+      "rich/json.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/text.py"
+      ],
+      "rich/jupyter.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/terminal_theme.py"
+      ],
+      "rich/layout.py": [
+        "rich/_ratio.py",
+        "rich/abc.py",
+        "rich/align.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/region.py",
+        "rich/repr.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/table.py",
+        "rich/tree.py"
+      ],
+      "rich/live.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/align.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/file_proxy.py",
+        "rich/jupyter.py",
+        "rich/live_render.py",
+        "rich/panel.py",
+        "rich/rule.py",
+        "rich/screen.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/live_render.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/logging.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_log_render.py",
+        "rich/_null_file.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/text.py",
+        "rich/traceback.py"
+      ],
+      "rich/markdown.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_loop.py",
+        "rich/_stack.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/jupyter.py",
+        "rich/rule.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/markup.py": [
+        "rich/__init__.py",
+        "rich/_emoji_replace.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/emoji.py",
+        "rich/errors.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/measure.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/protocol.py"
+      ],
+      "rich/padding.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/pager.py": [
+        "rich/__main__.py",
+        "rich/abc.py",
+        "rich/console.py"
+      ],
+      "rich/palette.py": [
+        "rich/color.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/panel.py": [
+        "rich/align.py",
+        "rich/box.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/pretty.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/abc.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/repr.py",
+        "rich/text.py"
+      ],
+      "rich/progress.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/filesize.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/panel.py",
+        "rich/progress_bar.py",
+        "rich/rule.py",
+        "rich/spinner.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/progress_bar.py": [
+        "rich/color.py",
+        "rich/color_triplet.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/prompt.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/text.py"
+      ],
+      "rich/protocol.py": [
+        "rich/console.py"
+      ],
+      "rich/repr.py": [
+        "rich/console.py"
+      ],
+      "rich/rule.py": [
+        "rich/align.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/scope.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/screen.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/segment.py": [
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/repr.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/text.py"
+      ],
+      "rich/spinner.py": [
+        "rich/_spinners.py",
+        "rich/console.py",
+        "rich/live.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "rich/status.py": [
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/live.py",
+        "rich/spinner.py",
+        "rich/style.py"
+      ],
+      "rich/style.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/repr.py",
+        "rich/terminal_theme.py"
+      ],
+      "rich/styled.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/syntax.py": [
+        "rich/_loop.py",
+        "rich/abc.py",
+        "rich/cells.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/table.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/_ratio.py",
+        "rich/_timer.py",
+        "rich/align.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/highlighter.py",
+        "rich/jupyter.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/protocol.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "rich/terminal_theme.py": [
+        "rich/color_triplet.py",
+        "rich/palette.py"
+      ],
+      "rich/text.py": [
+        "rich/_loop.py",
+        "rich/_pick.py",
+        "rich/_wrap.py",
+        "rich/align.py",
+        "rich/ansi.py",
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/control.py",
+        "rich/emoji.py",
+        "rich/jupyter.py",
+        "rich/markup.py",
+        "rich/measure.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "rich/theme.py": [
+        "rich/default_styles.py",
+        "rich/style.py"
+      ],
+      "rich/themes.py": [
+        "rich/default_styles.py",
+        "rich/theme.py"
+      ],
+      "rich/traceback.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_loop.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/highlighter.py",
+        "rich/panel.py",
+        "rich/pretty.py",
+        "rich/scope.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "rich/text.py",
+        "rich/theme.py"
+      ],
+      "rich/tree.py": [
+        "rich/_loop.py",
+        "rich/console.py",
+        "rich/jupyter.py",
+        "rich/markdown.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/styled.py",
+        "rich/syntax.py",
+        "rich/table.py"
+      ],
+      "tests/render.py": [
+        "rich/console.py"
+      ],
+      "tests/test_align.py": [
+        "rich/align.py",
+        "rich/console.py",
+        "rich/measure.py"
+      ],
+      "tests/test_ansi.py": [
+        "rich/ansi.py",
+        "rich/console.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_bar.py": [
+        "rich/console.py",
+        "rich/progress_bar.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "tests/render.py"
+      ],
+      "tests/test_block_bar.py": [
+        "rich/bar.py",
+        "rich/console.py",
+        "tests/render.py"
+      ],
+      "tests/test_box.py": [
+        "rich/box.py",
+        "rich/console.py"
+      ],
+      "tests/test_card.py": [
+        "rich/__main__.py",
+        "rich/console.py",
+        "tests/_card_render.py"
+      ],
+      "tests/test_cells.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/cells.py",
+        "rich/console.py"
+      ],
+      "tests/test_color.py": [
+        "rich/color.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_color_triplet.py": [
+        "rich/color_triplet.py"
+      ],
+      "tests/test_columns.py": [
+        "rich/columns.py",
+        "rich/console.py"
+      ],
+      "tests/test_columns_align.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/box.py",
+        "rich/columns.py",
+        "rich/console.py",
+        "rich/panel.py"
+      ],
+      "tests/test_console.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_null_file.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/control.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/padding.py",
+        "rich/pager.py",
+        "rich/panel.py",
+        "rich/region.py",
+        "rich/segment.py",
+        "rich/status.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_constrain.py": [
+        "rich/console.py",
+        "rich/constrain.py",
+        "rich/text.py"
+      ],
+      "tests/test_containers.py": [
+        "rich/console.py",
+        "rich/containers.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_control.py": [
+        "rich/control.py",
+        "rich/segment.py"
+      ],
+      "tests/test_emoji.py": [
+        "rich/emoji.py",
+        "tests/render.py"
+      ],
+      "tests/test_file_proxy.py": [
+        "rich/console.py",
+        "rich/file_proxy.py"
+      ],
+      "tests/test_filesize.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/filesize.py"
+      ],
+      "tests/test_getfileno.py": [
+        "rich/_fileno.py"
+      ],
+      "tests/test_highlighter.py": [
+        "rich/highlighter.py",
+        "rich/json.py",
+        "rich/text.py"
+      ],
+      "tests/test_inspect.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py"
+      ],
+      "tests/test_json.py": [
+        "rich/json.py"
+      ],
+      "tests/test_jupyter.py": [
+        "rich/console.py"
+      ],
+      "tests/test_layout.py": [
+        "rich/console.py",
+        "rich/layout.py",
+        "rich/panel.py"
+      ],
+      "tests/test_live.py": [
+        "rich/console.py",
+        "rich/live.py",
+        "rich/text.py"
+      ],
+      "tests/test_live_render.py": [
+        "rich/console.py",
+        "rich/live_render.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tests/test_log.py": [
+        "rich/console.py"
+      ],
+      "tests/test_logging.py": [
+        "rich/console.py",
+        "rich/logging.py"
+      ],
+      "tests/test_markdown.py": [
+        "rich/console.py",
+        "rich/markdown.py"
+      ],
+      "tests/test_markdown_no_hyperlinks.py": [
+        "rich/console.py",
+        "rich/markdown.py"
+      ],
+      "tests/test_markup.py": [
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/markup.py",
+        "rich/text.py"
+      ],
+      "tests/test_measure.py": [
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/text.py"
+      ],
+      "tests/test_null_file.py": [
+        "rich/_null_file.py"
+      ],
+      "tests/test_padding.py": [
+        "rich/console.py",
+        "rich/padding.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tests/test_palette.py": [
+        "rich/_palettes.py",
+        "rich/table.py"
+      ],
+      "tests/test_panel.py": [
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_pick.py": [
+        "rich/_pick.py"
+      ],
+      "tests/test_pretty.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/pretty.py",
+        "rich/text.py"
+      ],
+      "tests/test_progress.py": [
+        "rich/console.py",
+        "rich/highlighter.py",
+        "rich/progress.py",
+        "rich/progress_bar.py",
+        "rich/text.py",
+        "tests/render.py"
+      ],
+      "tests/test_prompt.py": [
+        "rich/console.py",
+        "rich/prompt.py"
+      ],
+      "tests/test_protocol.py": [
+        "rich/abc.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/text.py"
+      ],
+      "tests/test_ratio.py": [
+        "rich/_ratio.py"
+      ],
+      "tests/test_repr.py": [
+        "rich/console.py",
+        "rich/repr.py"
+      ],
+      "tests/test_rich_print.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/console.py",
+        "rich/json.py"
+      ],
+      "tests/test_rule.py": [
+        "rich/console.py",
+        "rich/rule.py",
+        "rich/text.py"
+      ],
+      "tests/test_rule_in_table.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/rule.py",
+        "rich/table.py"
+      ],
+      "tests/test_screen.py": [
+        "rich/console.py",
+        "rich/screen.py"
+      ],
+      "tests/test_segment.py": [
+        "rich/cells.py",
+        "rich/console.py",
+        "rich/segment.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_spinner.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/rule.py",
+        "rich/spinner.py",
+        "rich/text.py"
+      ],
+      "tests/test_stack.py": [
+        "rich/_stack.py"
+      ],
+      "tests/test_status.py": [
+        "rich/console.py",
+        "rich/spinner.py",
+        "rich/status.py"
+      ],
+      "tests/test_style.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/color.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/style.py"
+      ],
+      "tests/test_styled.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/styled.py"
+      ],
+      "tests/test_syntax.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/panel.py",
+        "rich/style.py",
+        "rich/syntax.py",
+        "tests/render.py"
+      ],
+      "tests/test_table.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/box.py",
+        "rich/console.py",
+        "rich/errors.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/table.py",
+        "rich/text.py"
+      ],
+      "tests/test_text.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/style.py",
+        "rich/text.py"
+      ],
+      "tests/test_theme.py": [
+        "rich/style.py",
+        "rich/theme.py"
+      ],
+      "tests/test_tools.py": [
+        "rich/_loop.py",
+        "rich/_ratio.py"
+      ],
+      "tests/test_traceback.py": [
+        "rich/console.py",
+        "rich/theme.py",
+        "rich/traceback.py"
+      ],
+      "tests/test_tree.py": [
+        "rich/console.py",
+        "rich/measure.py",
+        "rich/tree.py"
+      ],
+      "tests/test_unicode_data.py": [
+        "rich/_unicode_data/__init__.py",
+        "rich/_unicode_data/_versions.py",
+        "rich/cells.py"
+      ],
+      "tests/test_win32_console.py": [
+        "rich/__init__.py",
+        "rich/_extension.py",
+        "rich/_inspect.py",
+        "rich/_win32_console.py",
+        "rich/console.py",
+        "rich/style.py"
+      ],
+      "tests/test_windows_renderer.py": [
+        "rich/_win32_console.py",
+        "rich/_windows_renderer.py",
+        "rich/segment.py",
+        "rich/style.py"
+      ],
+      "tools/make_emoji.py": [
+        "rich/emoji.py"
+      ],
+      "tools/make_width_tables.py": [
+        "rich/cells.py"
+      ],
+      "tools/profile_divide.py": [
+        "rich/segment.py"
+      ],
+      "tools/profile_pretty.py": [
+        "rich/console.py",
+        "rich/json.py",
+        "rich/pretty.py"
+      ],
+      "tools/stress_test_pretty.py": [
+        "rich/_timer.py",
+        "rich/console.py",
+        "rich/panel.py",
+        "rich/pretty.py"
+      ]
+    },
+    "barrels": [
+      "rich/__init__.py",
+      "rich/_unicode_data/__init__.py"
+    ],
+    "self_loops": [],
+    "hubs": [
+      {
+        "file": "rich/console.py",
+        "fan_in": 110,
+        "fan_out": 37,
+        "total": 147,
+        "loc": 2699,
+        "cyclomatic_per_function_max": 35,
+        "fan_in_pct": 100,
+        "loc_pct": 100
+      },
+      {
+        "file": "rich/text.py",
+        "fan_in": 57,
+        "fan_out": 15,
+        "total": 72,
+        "loc": 1364,
+        "cyclomatic_per_function_max": 16,
+        "fan_in_pct": 100,
+        "loc_pct": 99
+      },
+      {
+        "file": "rich/style.py",
+        "fan_in": 47,
+        "fan_out": 5,
+        "total": 52,
+        "loc": 797,
+        "cyclomatic_per_function_max": 50,
+        "fan_in_pct": 99,
+        "loc_pct": 95
+      },
+      {
+        "file": "rich/__init__.py",
+        "fan_in": 43,
+        "fan_out": 3,
+        "total": 46,
+        "loc": 178,
+        "cyclomatic_per_function_max": 5,
+        "fan_in_pct": 99,
+        "loc_pct": 65
+      },
+      {
+        "file": "rich/table.py",
+        "fan_in": 29,
+        "fan_out": 17,
+        "total": 46,
+        "loc": 1016,
+        "cyclomatic_per_function_max": 54,
+        "fan_in_pct": 97,
+        "loc_pct": 97
+      },
+      {
+        "file": "rich/panel.py",
+        "fan_in": 29,
+        "fan_out": 10,
+        "total": 39,
+        "loc": 318,
+        "cyclomatic_per_function_max": 23,
+        "fan_in_pct": 97,
+        "loc_pct": 76
+      },
+      {
+        "file": "rich/segment.py",
+        "fan_in": 31,
+        "fan_out": 6,
+        "total": 37,
+        "loc": 781,
+        "cyclomatic_per_function_max": 14,
+        "fan_in_pct": 98,
+        "loc_pct": 94
+      },
+      {
+        "file": "rich/cells.py",
+        "fan_in": 33,
+        "fan_out": 1,
+        "total": 34,
+        "loc": 353,
+        "cyclomatic_per_function_max": 14,
+        "fan_in_pct": 98,
+        "loc_pct": 77
+      },
+      {
+        "file": "rich/measure.py",
+        "fan_in": 28,
+        "fan_out": 3,
+        "total": 31,
+        "loc": 152,
+        "cyclomatic_per_function_max": 8,
+        "fan_in_pct": 96,
+        "loc_pct": 62
+      },
+      {
+        "file": "rich/live.py",
+        "fan_in": 11,
+        "fan_out": 13,
+        "total": 24,
+        "loc": 405,
+        "cyclomatic_per_function_max": 16,
+        "fan_in_pct": 92,
+        "loc_pct": 78
+      },
+      {
+        "file": "rich/pretty.py",
+        "fan_in": 13,
+        "fan_out": 11,
+        "total": 24,
+        "loc": 1017,
+        "cyclomatic_per_function_max": 76,
+        "fan_in_pct": 94,
+        "loc_pct": 97
+      },
+      {
+        "file": "rich/align.py",
+        "fan_in": 15,
+        "fan_out": 8,
+        "total": 23,
+        "loc": 321,
+        "cyclomatic_per_function_max": 28,
+        "fan_in_pct": 95,
+        "loc_pct": 76
+      },
+      {
+        "file": "rich/jupyter.py",
+        "fan_in": 20,
+        "fan_out": 3,
+        "total": 23,
+        "loc": 102,
+        "cyclomatic_per_function_max": 6,
+        "fan_in_pct": 96,
+        "loc_pct": 53
+      },
+      {
+        "file": "rich/progress.py",
+        "fan_in": 8,
+        "fan_out": 15,
+        "total": 23,
+        "loc": 1717,
+        "cyclomatic_per_function_max": 14,
+        "fan_in_pct": 91,
+        "loc_pct": 99
+      },
+      {
+        "file": "rich/color.py",
+        "fan_in": 14,
+        "fan_out": 8,
+        "total": 22,
+        "loc": 622,
+        "cyclomatic_per_function_max": 18,
+        "fan_in_pct": 94,
+        "loc_pct": 88
+      },
+      {
+        "file": "rich/syntax.py",
+        "fan_in": 10,
+        "fan_out": 12,
+        "total": 22,
+        "loc": 989,
+        "cyclomatic_per_function_max": 32,
+        "fan_in_pct": 92,
+        "loc_pct": 96
+      },
+      {
+        "file": "rich/highlighter.py",
+        "fan_in": 16,
+        "fan_out": 4,
+        "total": 20,
+        "loc": 233,
+        "cyclomatic_per_function_max": 5,
+        "fan_in_pct": 95,
+        "loc_pct": 71
+      },
+      {
+        "file": "rich/box.py",
+        "fan_in": 12,
+        "fan_out": 7,
+        "total": 19,
+        "loc": 475,
+        "cyclomatic_per_function_max": 10,
+        "fan_in_pct": 93,
+        "loc_pct": 84
+      },
+      {
+        "file": "rich/traceback.py",
+        "fan_in": 5,
+        "fan_out": 13,
+        "total": 18,
+        "loc": 925,
+        "cyclomatic_per_function_max": 40,
+        "fan_in_pct": 87,
+        "loc_pct": 96
+      },
+      {
+        "file": "rich/columns.py",
+        "fan_in": 9,
+        "fan_out": 8,
+        "total": 17,
+        "loc": 188,
+        "cyclomatic_per_function_max": 28,
+        "fan_in_pct": 91,
+        "loc_pct": 67
+      },
+      {
+        "file": "rich/layout.py",
+        "fan_in": 3,
+        "fan_out": 14,
+        "total": 17,
+        "loc": 443,
+        "cyclomatic_per_function_max": 6,
+        "fan_in_pct": 80,
+        "loc_pct": 81
+      },
+      {
+        "file": "rich/markdown.py",
+        "fan_in": 4,
+        "fan_out": 13,
+        "total": 17,
+        "loc": 803,
+        "cyclomatic_per_function_max": 40,
+        "fan_in_pct": 84,
+        "loc_pct": 95
+      },
+      {
+        "file": "rich/__main__.py",
+        "fan_in": 2,
+        "fan_out": 13,
+        "total": 15,
+        "loc": 246,
+        "cyclomatic_per_function_max": 3,
+        "fan_in_pct": 75,
+        "loc_pct": 72
+      },
+      {
+        "file": "tests/test_console.py",
+        "fan_in": 0,
+        "fan_out": 15,
+        "total": 15,
+        "loc": 1136,
+        "cyclomatic_per_function_max": 5,
+        "fan_in_pct": 62,
+        "loc_pct": 98
+      },
+      {
+        "file": "rich/rule.py",
+        "fan_in": 7,
+        "fan_out": 7,
+        "total": 14,
+        "loc": 131,
+        "cyclomatic_per_function_max": 11,
+        "fan_in_pct": 90,
+        "loc_pct": 57
+      }
+    ],
+    "fan_in_top": [
+      {
+        "file": "rich/console.py",
+        "value": 110
+      },
+      {
+        "file": "rich/text.py",
+        "value": 57
+      },
+      {
+        "file": "rich/style.py",
+        "value": 47
+      },
+      {
+        "file": "rich/__init__.py",
+        "value": 43
+      },
+      {
+        "file": "rich/cells.py",
+        "value": 33
+      },
+      {
+        "file": "rich/segment.py",
+        "value": 31
+      },
+      {
+        "file": "rich/table.py",
+        "value": 29
+      },
+      {
+        "file": "rich/panel.py",
+        "value": 29
+      },
+      {
+        "file": "rich/measure.py",
+        "value": 28
+      },
+      {
+        "file": "rich/jupyter.py",
+        "value": 20
+      },
+      {
+        "file": "rich/highlighter.py",
+        "value": 16
+      },
+      {
+        "file": "rich/align.py",
+        "value": 15
+      },
+      {
+        "file": "rich/color.py",
+        "value": 14
+      },
+      {
+        "file": "rich/pretty.py",
+        "value": 13
+      },
+      {
+        "file": "rich/box.py",
+        "value": 12
+      },
+      {
+        "file": "rich/_loop.py",
+        "value": 12
+      },
+      {
+        "file": "rich/live.py",
+        "value": 11
+      },
+      {
+        "file": "rich/syntax.py",
+        "value": 10
+      },
+      {
+        "file": "rich/errors.py",
+        "value": 10
+      },
+      {
+        "file": "rich/columns.py",
+        "value": 9
+      }
+    ],
+    "complex_files": [
+      {
+        "file": "rich/pretty.py",
+        "loc": 1017,
+        "cyclomatic_total": 144,
+        "cyclomatic_per_function_max": 76,
+        "worst_function_line": 580,
+        "max_nesting": 9,
+        "functions": 34,
+        "cyclomatic_pct": 100,
+        "loc_pct": 97
+      },
+      {
+        "file": "rich/table.py",
+        "loc": 1016,
+        "cyclomatic_total": 147,
+        "cyclomatic_per_function_max": 54,
+        "worst_function_line": 755,
+        "max_nesting": 6,
+        "functions": 28,
+        "cyclomatic_pct": 100,
+        "loc_pct": 97
+      },
+      {
+        "file": "rich/style.py",
+        "loc": 797,
+        "cyclomatic_total": 159,
+        "cyclomatic_per_function_max": 50,
+        "worst_function_line": 131,
+        "max_nesting": 5,
+        "functions": 41,
+        "cyclomatic_pct": 99,
+        "loc_pct": 95
+      },
+      {
+        "file": "rich/markdown.py",
+        "loc": 803,
+        "cyclomatic_total": 89,
+        "cyclomatic_per_function_max": 40,
+        "worst_function_line": 579,
+        "max_nesting": 8,
+        "functions": 57,
+        "cyclomatic_pct": 99,
+        "loc_pct": 95
+      },
+      {
+        "file": "rich/traceback.py",
+        "loc": 925,
+        "cyclomatic_total": 106,
+        "cyclomatic_per_function_max": 40,
+        "worst_function_line": 433,
+        "max_nesting": 7,
+        "functions": 20,
+        "cyclomatic_pct": 99,
+        "loc_pct": 96
+      },
+      {
+        "file": "rich/console.py",
+        "loc": 2699,
+        "cyclomatic_total": 291,
+        "cyclomatic_per_function_max": 35,
+        "worst_function_line": 619,
+        "max_nesting": 11,
+        "functions": 116,
+        "cyclomatic_pct": 98,
+        "loc_pct": 100
+      },
+      {
+        "file": "rich/syntax.py",
+        "loc": 989,
+        "cyclomatic_total": 104,
+        "cyclomatic_per_function_max": 32,
+        "worst_function_line": 652,
+        "max_nesting": 7,
+        "functions": 31,
+        "cyclomatic_pct": 97,
+        "loc_pct": 96
+      },
+      {
+        "file": "rich/align.py",
+        "loc": 321,
+        "cyclomatic_total": 39,
+        "cyclomatic_per_function_max": 28,
+        "worst_function_line": 143,
+        "max_nesting": 4,
+        "functions": 14,
+        "cyclomatic_pct": 97,
+        "loc_pct": 76
+      },
+      {
+        "file": "rich/columns.py",
+        "loc": 188,
+        "cyclomatic_total": 30,
+        "cyclomatic_per_function_max": 28,
+        "worst_function_line": 62,
+        "max_nesting": 6,
+        "functions": 4,
+        "cyclomatic_pct": 97,
+        "loc_pct": 67
+      },
+      {
+        "file": "rich/markup.py",
+        "loc": 252,
+        "cyclomatic_total": 40,
+        "cyclomatic_per_function_max": 27,
+        "worst_function_line": 106,
+        "max_nesting": 8,
+        "functions": 7,
+        "cyclomatic_pct": 96,
+        "loc_pct": 72
+      },
+      {
+        "file": "rich/tree.py",
+        "loc": 258,
+        "cyclomatic_total": 35,
+        "cyclomatic_per_function_max": 27,
+        "worst_function_line": 86,
+        "max_nesting": 5,
+        "functions": 5,
+        "cyclomatic_pct": 96,
+        "loc_pct": 73
+      },
+      {
+        "file": "rich/_inspect.py",
+        "loc": 273,
+        "cyclomatic_total": 48,
+        "cyclomatic_per_function_max": 26,
+        "worst_function_line": 125,
+        "max_nesting": 7,
+        "functions": 12,
+        "cyclomatic_pct": 95,
+        "loc_pct": 74
+      },
+      {
+        "file": "rich/panel.py",
+        "loc": 318,
+        "cyclomatic_total": 32,
+        "cyclomatic_per_function_max": 23,
+        "worst_function_line": 141,
+        "max_nesting": 3,
+        "functions": 7,
+        "cyclomatic_pct": 94,
+        "loc_pct": 76
+      },
+      {
+        "file": "rich/_windows_renderer.py",
+        "loc": 57,
+        "cyclomatic_total": 22,
+        "cyclomatic_per_function_max": 22,
+        "worst_function_line": 7,
+        "max_nesting": 8,
+        "functions": 1,
+        "cyclomatic_pct": 94,
+        "loc_pct": 38
+      },
+      {
+        "file": "rich/repr.py",
+        "loc": 151,
+        "cyclomatic_total": 25,
+        "cyclomatic_per_function_max": 22,
+        "worst_function_line": 36,
+        "max_nesting": 8,
+        "functions": 10,
+        "cyclomatic_pct": 94,
+        "loc_pct": 61
+      },
+      {
+        "file": "rich/progress_bar.py",
+        "loc": 224,
+        "cyclomatic_total": 34,
+        "cyclomatic_per_function_max": 21,
+        "worst_function_line": 156,
+        "max_nesting": 4,
+        "functions": 8,
+        "cyclomatic_pct": 93,
+        "loc_pct": 70
+      },
+      {
+        "file": "rich/ansi.py",
+        "loc": 242,
+        "cyclomatic_total": 31,
+        "cyclomatic_per_function_max": 20,
+        "worst_function_line": 138,
+        "max_nesting": 8,
+        "functions": 5,
+        "cyclomatic_pct": 92,
+        "loc_pct": 71
+      },
+      {
+        "file": "rich/_log_render.py",
+        "loc": 95,
+        "cyclomatic_total": 21,
+        "cyclomatic_per_function_max": 19,
+        "worst_function_line": 32,
+        "max_nesting": 3,
+        "functions": 2,
+        "cyclomatic_pct": 92,
+        "loc_pct": 51
+      },
+      {
+        "file": "rich/color.py",
+        "loc": 622,
+        "cyclomatic_total": 56,
+        "cyclomatic_per_function_max": 18,
+        "worst_function_line": 513,
+        "max_nesting": 5,
+        "functions": 18,
+        "cyclomatic_pct": 92,
+        "loc_pct": 88
+      },
+      {
+        "file": "rich/live.py",
+        "loc": 405,
+        "cyclomatic_total": 65,
+        "cyclomatic_per_function_max": 16,
+        "worst_function_line": 145,
+        "max_nesting": 5,
+        "functions": 16,
+        "cyclomatic_pct": 91,
+        "loc_pct": 78
+      },
+      {
+        "file": "rich/text.py",
+        "loc": 1364,
+        "cyclomatic_total": 168,
+        "cyclomatic_per_function_max": 16,
+        "worst_function_line": 1106,
+        "max_nesting": 6,
+        "functions": 65,
+        "cyclomatic_pct": 91,
+        "loc_pct": 99
+      },
+      {
+        "file": "rich/containers.py",
+        "loc": 168,
+        "cyclomatic_total": 18,
+        "cyclomatic_per_function_max": 15,
+        "worst_function_line": 111,
+        "max_nesting": 6,
+        "functions": 18,
+        "cyclomatic_pct": 90,
+        "loc_pct": 64
+      },
+      {
+        "file": "rich/_wrap.py",
+        "loc": 94,
+        "cyclomatic_total": 16,
+        "cyclomatic_per_function_max": 14,
+        "worst_function_line": 26,
+        "max_nesting": 8,
+        "functions": 2,
+        "cyclomatic_pct": 90,
+        "loc_pct": 51
+      },
+      {
+        "file": "rich/cells.py",
+        "loc": 353,
+        "cyclomatic_total": 50,
+        "cyclomatic_per_function_max": 14,
+        "worst_function_line": 161,
+        "max_nesting": 6,
+        "functions": 9,
+        "cyclomatic_pct": 90,
+        "loc_pct": 77
+      },
+      {
+        "file": "rich/progress.py",
+        "loc": 1717,
+        "cyclomatic_total": 132,
+        "cyclomatic_per_function_max": 14,
+        "worst_function_line": 1417,
+        "max_nesting": 4,
+        "functions": 96,
+        "cyclomatic_pct": 90,
+        "loc_pct": 99
+      }
+    ],
+    "external_deps_top": [
+      {
+        "name": "rich.console.rich.console",
+        "imports": 96
+      },
+      {
+        "name": "typing",
+        "imports": 88
+      },
+      {
+        "name": "typing.typing",
+        "imports": 87
+      },
+      {
+        "name": "rich.console.Console",
+        "imports": 84
+      },
+      {
+        "name": "typing.Optional",
+        "imports": 49
+      },
+      {
+        "name": "typing.List",
+        "imports": 40
+      },
+      {
+        "name": "io",
+        "imports": 36
+      },
+      {
+        "name": "pytest",
+        "imports": 36
+      },
+      {
+        "name": "sys",
+        "imports": 34
+      },
+      {
+        "name": "rich.rich",
+        "imports": 33
+      },
+      {
+        "name": "rich.text.rich.text",
+        "imports": 31
+      },
+      {
+        "name": "rich.text.Text",
+        "imports": 31
+      },
+      {
+        "name": "typing.Iterable",
+        "imports": 31
+      },
+      {
+        "name": "typing.TYPE_CHECKING",
+        "imports": 31
+      },
+      {
+        "name": "time",
+        "imports": 29
+      },
+      {
+        "name": "typing.Tuple",
+        "imports": 28
+      },
+      {
+        "name": "typing.Union",
+        "imports": 27
+      },
+      {
+        "name": "rich.cells.rich.cells",
+        "imports": 26
+      },
+      {
+        "name": "rich.panel.rich.panel",
+        "imports": 23
+      },
+      {
+        "name": "rich.panel.Panel",
+        "imports": 23
+      },
+      {
+        "name": "rich.cells.CellTable",
+        "imports": 23
+      },
+      {
+        "name": "rich.style.rich.style",
+        "imports": 22
+      },
+      {
+        "name": "rich.style.Style",
+        "imports": 22
+      },
+      {
+        "name": "rich.table.rich.table",
+        "imports": 21
+      },
+      {
+        "name": "rich.table.Table",
+        "imports": 21
+      }
+    ]
+  }
+}

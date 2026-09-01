@@ -750,6 +750,13 @@ def main():
 
     if a.cmd == "add":
         rec = json.loads(a.json)
+        # Схема объявляет `axes`/`files` массивами, CSV хранит строку. Без этой
+        # нормализации DictWriter записал бы repr списка, а `export` прочитал бы
+        # `['structure'` как имя оси и упал на валидации: приняли ввод, который
+        # сами же не читаем. Поймано первым живым прогоном на чужом репозитории.
+        for key, sep in (("axes", ", "), ("files", ", "), ("source", "; ")):
+            if isinstance(rec.get(key), list):
+                rec[key] = sep.join(str(x) for x in rec[key])
         missing = [k for k in REQUIRED if not rec.get(k)]
         if missing:
             sys.exit(f"находка неполна, брак: нет полей {', '.join(missing)}")

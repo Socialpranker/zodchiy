@@ -1,0 +1,51 @@
+{
+  "snapshot": {
+    "repo": "/tmp/zodchiy-example/rich",
+    "branch": "main",
+    "head": "9d8f9a372cc5",
+    "worktree": "clean",
+    "since": "20 years ago"
+  },
+  "calibration_passed": true,
+  "confidence_ceiling": "verdict",
+  "files": 213,
+  "edges": 750,
+  "runtime_cycles": 1,
+  "cycle_members": [
+    "rich/__init__.py",
+    "rich/__main__.py",
+    "rich/_extension.py",
+    "rich/_inspect.py",
+    "rich/_log_render.py",
+    "rich/_palettes.py",
+    "rich/_win32_console.py",
+    "rich/_windows.py",
+    "rich/_windows_renderer.py",
+    "rich/_wrap.py",
+    "rich/abc.py",
+    "rich/align.py"
+  ],
+  "containment_ratio": 0.672,
+  "coupling_pairs": 289,
+  "commits_with_code": 1942,
+  "painful_files": [
+    "rich/prompt.py"
+  ],
+  "top_hotspots": [
+    "rich/console.py",
+    "rich/progress.py",
+    "rich/text.py",
+    "rich/table.py",
+    "rich/pretty.py",
+    "rich/syntax.py",
+    "rich/markdown.py",
+    "rich/traceback.py",
+    "rich/segment.py",
+    "rich/style.py"
+  ],
+  "touch_cost_p90": 4,
+  "episodes_multi_share": 0.367,
+  "rework_rate": 0.263,
+  "fix_latency_median_days": 3.33,
+  "unstable_files": []
+}
