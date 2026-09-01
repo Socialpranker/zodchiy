@@ -36,6 +36,17 @@ except ImportError:
 need_ts = unittest.skipUnless(HAS_TS, "tree-sitter недоступен")
 
 
+def need_grammar(lang: str):
+    """Грамматика ставится отдельным пакетом на язык. Без неё `Parsers().get()`
+    отдаёт None, и тест падал бы `AttributeError: NoneType`, не сказав, чего
+    не хватает — CI ловил ровно это на `tree_sitter_javascript`."""
+    try:
+        ok = structure.Parsers().get(lang) is not None
+    except ImportError:
+        ok = False
+    return unittest.skipUnless(ok, f"нет грамматики tree-sitter для {lang}")
+
+
 def log_line(sha, author, ts, subject):
     s = behavior.LOG_SEP
     return f"__C__{sha}{s}{author}{s}{ts}{s}{subject}"
@@ -397,17 +408,21 @@ class TestImportsViaTreeSitter(unittest.TestCase):
         got = dict(self.imports("from src.user.model import User\n"))
         self.assertEqual(got["src.user.model"], "runtime")
 
+    @need_grammar("typescript")
     def test_ts_import_type(self):
         got = dict(self.imports('import type { User } from "./model";\n', "typescript"))
         self.assertEqual(got["./model"], "type")
 
+    @need_grammar("typescript")
     def test_ts_value_import(self):
         got = dict(self.imports('import { load } from "./repo";\n', "typescript"))
         self.assertEqual(got["./repo"], "runtime")
 
+    @need_grammar("typescript")
     def test_ts_reexport(self):
         self.assertIn("./model", dict(self.imports('export { User } from "./model";\n', "typescript")))
 
+    @need_grammar("javascript")
     def test_js_require(self):
         self.assertIn("./repo", dict(self.imports('const r = require("./repo");\n', "javascript")))
 
