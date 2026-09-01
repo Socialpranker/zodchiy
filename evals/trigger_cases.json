@@ -1,0 +1,27 @@
+{
+  "_doc": "Trigger-eval на frontmatter `description`. Описание зодчего ни разу не проверялось эмпирически — только вычитывалось глазами, а это ровно тот класс ошибки, под который у skill-creator заведён отдельный харнесс. Половина should-кейсов сформулирована БЕЗ ключевых слов «архитектура»/«техдолг»: описание, которое ловит только прямые формулировки, на живом разговоре молчит. Прогон требует модели — см. README, раздел «Trigger-слой».",
+  "split": "train — на них правится description; test — по ним меряется, не подглядывая",
+  "cases": [
+    {"id": "t01", "split": "train", "should_trigger": true, "prompt": "Разбери архитектуру этого репозитория", "why": "прямая формулировка из description"},
+    {"id": "t02", "split": "train", "should_trigger": true, "prompt": "Где у нас основной техдолг?", "why": "прямая формулировка"},
+    {"id": "t03", "split": "train", "should_trigger": true, "prompt": "Что рефакторить в первую очередь?", "why": "приоритизация долга — ядро режима audit"},
+    {"id": "t04", "split": "train", "should_trigger": true, "prompt": "Мы третий месяц боимся трогать модуль оплаты. Посмотри, что там.", "why": "непрямая: ни одного ключевого слова, но это буквально R4 — цена изменения"},
+    {"id": "t05", "split": "train", "should_trigger": true, "prompt": "Почему любая правка тут задевает пять файлов?", "why": "непрямая: это описание temporal coupling словами"},
+    {"id": "t06", "split": "train", "should_trigger": true, "prompt": "Каждый релиз что-то отваливается в соседнем модуле — разберись почему", "why": "непрямая: распространение изменений, не отладка одного бага"},
+    {"id": "t07", "split": "test", "should_trigger": true, "prompt": "Оцени кодовую базу перед тем, как брать двух новых людей", "why": "прямая + knowledge_risk"},
+    {"id": "t08", "split": "test", "should_trigger": true, "prompt": "Изучи этот чужой репозиторий и объясни, как он устроен", "why": "режим recon"},
+    {"id": "t09", "split": "test", "should_trigger": true, "prompt": "Стоит ли переписывать этот сервис или можно чинить по месту?", "why": "прямая; ответ требует измеренной цены"},
+    {"id": "t10", "split": "test", "should_trigger": true, "prompt": "Хочу понять, во что обойдётся вынести биллинг в отдельный сервис", "why": "непрямая: планирование миграции"},
+    {"id": "t11", "split": "test", "should_trigger": true, "prompt": "Новичок входит в проект месяц. Что не так с кодом?", "why": "непрямая: R1, когнитивная перегрузка"},
+    {"id": "t12", "split": "test", "should_trigger": true, "prompt": "Собираемся делать большой рефакторинг домена — с чего начать", "why": "прямо названо в description"},
+
+    {"id": "n01", "split": "train", "should_trigger": false, "prompt": "Проверь мой диф перед коммитом", "route_to": "code-review", "why": "ревью изменений, не строения"},
+    {"id": "n02", "split": "train", "should_trigger": false, "prompt": "Просканируй проект на уязвимости", "route_to": "fynd-dyrka", "why": "безопасность"},
+    {"id": "n03", "split": "train", "should_trigger": false, "prompt": "Почему падает вот этот тест?", "route_to": "superpowers:systematic-debugging", "why": "отладка конкретного отказа"},
+    {"id": "n04", "split": "train", "should_trigger": false, "prompt": "Сделай ресёрч по векторным БД", "route_to": "deepdive", "why": "внешний ресёрч"},
+    {"id": "n05", "split": "test", "should_trigger": false, "prompt": "Дашборд выглядит шаблонно, переделай", "route_to": "design-modern", "why": "UI"},
+    {"id": "n06", "split": "test", "should_trigger": false, "prompt": "Добавь колонку status в таблицу payments и напиши миграцию", "route_to": "python-db", "why": "точечная правка БД"},
+    {"id": "n07", "split": "test", "should_trigger": false, "prompt": "Обнови зависимости и пересобери lock-файл", "why": "рутина сопровождения"},
+    {"id": "n08", "split": "test", "should_trigger": false, "prompt": "Напиши README для этого проекта", "why": "документация; чтение репо ≠ аудит"}
+  ]
+}

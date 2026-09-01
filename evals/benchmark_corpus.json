@@ -1,0 +1,304 @@
+{
+  "_doc": "Frozen-слой: не отчёты модели, а прямой вывод measure.py на фикстурах. Ловит регрессию СКРИПТОВ (порог поехал, поле переименовали, нормализация сломалась) без модели вообще. Каждая запись «dirty» обязана иметь пару «clean» — иначе «нашёл N» неотличимо от «нашёл N и ещё десять ложных».",
+  "cases": [
+    {
+      "id": "cycle-runtime-dirty",
+      "fixture": "cycle-runtime",
+      "polarity": "dirty",
+      "risk": "R5",
+      "pair": "cycle-type-only-clean",
+      "note": "Настоящий рантайм-цикл обязан быть виден. Баг v1 №5: `from pkg import submodule` не резолвился, и гейт отвечал OK на внесённый руками цикл.",
+      "expect": {
+        "calibration_passed": true,
+        "confidence_ceiling": "verdict",
+        "behavior_available": true,
+        "runtime_cycles": 1,
+        "type_only_cycles": 0,
+        "cycle_members_include": [
+          "src/order/service.py",
+          "src/order/repository.py"
+        ],
+        "edge_present": [
+          [
+            "src/order/service.py",
+            "src/order/repository.py"
+          ],
+          [
+            "src/order/repository.py",
+            "src/order/service.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "cycle-type-only-clean",
+      "fixture": "cycle-type-only",
+      "polarity": "clean",
+      "risk": "R5",
+      "pair": "cycle-runtime-dirty",
+      "note": "Пара к предыдущей: тот же граф, но одно ребро существует только для тайпчекера. Ложняк v1 — 4 таких цикла были объявлены дефектами.",
+      "expect": {
+        "calibration_passed": true,
+        "confidence_ceiling": "verdict",
+        "runtime_cycles": 0,
+        "type_only_cycles_min": 1,
+        "type_only_edges_min": 1,
+        "edge_absent": [
+          [
+            "src/order/service.py",
+            "src/order/repository.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "coupling-r2-through-barrel",
+      "fixture": "coupling-r2-vs-r3",
+      "polarity": "dirty",
+      "risk": "R2",
+      "pair": "coupling-r3-no-edge",
+      "note": "Сцеплены И связаны, но ребро идёт через `__init__.py`. Баг v1 №4: без прохода сквозь barrel флагманская находка получала диагноз R3 вместо R2.",
+      "expect": {
+        "runtime_cycles": 0,
+        "coupled_pairs_include": [
+          [
+            "src/user/model.py",
+            "src/user/repository.py"
+          ]
+        ],
+        "coupling_degree_at_least": {
+          "src/user/model.py|src/user/repository.py": 0.6
+        },
+        "barrels_include": [
+          "src/user/__init__.py"
+        ],
+        "edge_absent": [
+          [
+            "src/user/repository.py",
+            "src/user/model.py"
+          ]
+        ],
+        "edge_through_barrel_present": [
+          [
+            "src/user/repository.py",
+            "src/user/model.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "coupling-r3-no-edge",
+      "fixture": "coupling-r2-vs-r3",
+      "polarity": "clean",
+      "risk": "R3",
+      "pair": "coupling-r2-through-barrel",
+      "note": "Пара к предыдущей: то же поведение, связи нет ни через barrel, ни напрямую. Наивная проверка объявит связь «скрытой» и выдаст R2.",
+      "expect": {
+        "coupled_pairs_include": [
+          [
+            "src/billing/tariff.py",
+            "src/report/pricing.py"
+          ]
+        ],
+        "edge_absent": [
+          [
+            "src/billing/tariff.py",
+            "src/report/pricing.py"
+          ],
+          [
+            "src/report/pricing.py",
+            "src/billing/tariff.py"
+          ]
+        ],
+        "edge_through_barrel_absent": [
+          [
+            "src/billing/tariff.py",
+            "src/report/pricing.py"
+          ],
+          [
+            "src/report/pricing.py",
+            "src/billing/tariff.py"
+          ]
+        ]
+      }
+    },
+    {
+      "id": "churn-pain-dirty",
+      "fixture": "churn-pain-vs-extension",
+      "polarity": "dirty",
+      "risk": "R4",
+      "pair": "churn-extension-point-clean",
+      "note": "Высокий churn И высокая доля багфиксов — это боль, и она обязана попасть в painful_files, по которым гейт считает регрессию.",
+      "expect": {
+        "calibration_passed": true,
+        "edits_at_least": {
+          "src/payments.py": 20
+        },
+        "fix_share_at_least": {
+          "src/payments.py": 0.35
+        },
+        "painful_files_include": [
+          "src/payments.py"
+        ]
+      }
+    },
+    {
+      "id": "churn-extension-point-clean",
+      "fixture": "churn-pain-vs-extension",
+      "polarity": "clean",
+      "risk": "R4",
+      "pair": "churn-pain-dirty",
+      "note": "Пара к предыдущей: churn ВЫШЕ, чем у болевого файла, но доля багфиксов низкая — точка расширения, не долг. Зафиксированный ложняк v1 (74 правки / 11% фиксов).",
+      "expect": {
+        "edits_at_least": {
+          "src/composition.py": 30
+        },
+        "fix_share_at_most": {
+          "src/composition.py": 0.15
+        },
+        "painful_files_exclude": [
+          "src/composition.py"
+        ]
+      }
+    },
+    {
+      "id": "barrel-fanin-clean",
+      "fixture": "churn-pain-vs-extension",
+      "polarity": "clean",
+      "risk": "R5",
+      "pair": "fanin-hub-dirty",
+      "note": "Barrel с высоким fan-in — точка реэкспорта по замыслу, не бог-объект. Ложняк v1: fan-in 109 был объявлен дефектом.",
+      "expect": {
+        "barrels_include": [
+          "src/shared/__init__.py"
+        ],
+        "fan_in_at_least": {
+          "src/shared/__init__.py": 8
+        }
+      }
+    },
+    {
+      "id": "fanin-hub-dirty",
+      "fixture": "churn-pain-vs-extension",
+      "polarity": "dirty",
+      "risk": "R5",
+      "pair": "barrel-fanin-clean",
+      "note": "Тот же fan-in 8, но это не реэкспорт: своя логика и цикломатическая выше порога. Пара к barrel-ложняку — без неё «высокий fan-in» не отличим от «высокий fan-in по замыслу».",
+      "expect": {
+        "fan_in_at_least": {
+          "src/legacy/registry.py": 8
+        },
+        "barrels_exclude": [
+          "src/legacy/registry.py"
+        ],
+        "per_function_max_at_least": {
+          "src/legacy/registry.py": 10
+        }
+      }
+    },
+    {
+      "id": "complexity-one-hairy-dirty",
+      "fixture": "complexity-normalization",
+      "polarity": "dirty",
+      "risk": "R1",
+      "pair": "complexity-many-simple-clean",
+      "note": "Одна функция выше порога McCabe на себя саму.",
+      "expect": {
+        "per_function_max_at_least": {
+          "src/one_hairy.py": 12
+        },
+        "functions_eq": {
+          "src/one_hairy.py": 1
+        }
+      }
+    },
+    {
+      "id": "complexity-many-simple-clean",
+      "fixture": "complexity-normalization",
+      "polarity": "clean",
+      "risk": "R1",
+      "pair": "complexity-one-hairy-dirty",
+      "note": "Пара к предыдущей: сумма по файлу 31 при максимуме по функции 4. Баг v1 №3 — порог McCabe задан на функцию, а считалось на файл.",
+      "expect": {
+        "cyclomatic_total_at_least": {
+          "src/simple_many.py": 25
+        },
+        "per_function_max_at_most": {
+          "src/simple_many.py": 6
+        },
+        "functions_eq": {
+          "src/simple_many.py": 10
+        }
+      }
+    },
+    {
+      "id": "stability-fragile-dirty",
+      "fixture": "velocity-stability",
+      "polarity": "dirty",
+      "risk": "R4",
+      "pair": "stability-solid-clean",
+      "note": "За каждой правкой через сутки идёт фикс — правки не держатся. Это НЕ то же, что «файл часто чинят»: ранжируется по нижней границе Уилсона, иначе шум с малым n встаёт первым.",
+      "expect": {
+        "calibration_passed": true,
+        "rework_rate_at_least": {
+          "src/fragile.py": 0.9
+        },
+        "rework_lb_at_least": {
+          "src/fragile.py": 0.6
+        },
+        "unstable_include": [
+          "src/fragile.py"
+        ],
+        "ledger_unstable_include": [
+          "src/fragile.py"
+        ]
+      }
+    },
+    {
+      "id": "stability-solid-clean",
+      "fixture": "velocity-stability",
+      "polarity": "clean",
+      "risk": "R4",
+      "pair": "stability-fragile-dirty",
+      "note": "Пара: столько же правок того же размера, ни одной доделки. Ловушка — считать churn признаком нестабильности.",
+      "expect": {
+        "rework_rate_at_most": {
+          "src/solid.py": 0.0
+        },
+        "ledger_unstable_exclude": [
+          "src/solid.py",
+          "src/burst.py"
+        ]
+      }
+    },
+    {
+      "id": "velocity-wide-dirty",
+      "fixture": "velocity-stability",
+      "polarity": "dirty",
+      "risk": "R2",
+      "pair": "velocity-narrow-clean",
+      "note": "Одно изменение трогает шесть файлов — цена изменения в местах, прямой ответ на «почему правка задевает пять файлов».",
+      "expect": {
+        "touch_cost_layer_at_least": {
+          "wide": 5
+        },
+        "episode_commits_at_least": {
+          "src/burst.py": 2.5
+        }
+      }
+    },
+    {
+      "id": "velocity-narrow-clean",
+      "fixture": "velocity-stability",
+      "polarity": "clean",
+      "risk": "R2",
+      "pair": "velocity-wide-dirty",
+      "note": "Пара: столько же коммитов, каждый в одном файле. Ловушка — считать число коммитов ценой изменения.",
+      "expect": {
+        "touch_cost_layer_at_most": {
+          "narrow": 1.0
+        }
+      }
+    }
+  ]
+}

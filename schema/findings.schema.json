@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zodchiy.dev/schema/findings.schema.json",
+  "title": "zodchiy findings document",
+  "description": "Машиночитаемый выход аудита. Markdown пишет модель — его форма зависит от харнесса; в CI и в диффе между прогонами опираться можно только на это.",
+  "type": "object",
+  "required": ["tool", "schema_version", "repo", "head", "confidence_ceiling", "refutation", "findings"],
+  "properties": {
+    "tool": {"const": "zodchiy/findings"},
+    "schema_version": {"type": "string"},
+    "repo": {"type": "string"},
+    "head": {"type": "string"},
+    "generated_from": {"type": "string", "description": "путь к measure.json, из которого разрешались source"},
+    "confidence_ceiling": {
+      "enum": ["hypothesis", "finding", "verdict"],
+      "description": "потолок прогона: минимум из потолка замера и потолка шага 4"
+    },
+    "ceiling_reasons": {"type": "array", "items": {"type": "string"}},
+    "refutation": {
+      "type": "object",
+      "required": ["mode"],
+      "properties": {
+        "mode": {"enum": ["none", "parallel", "sequential", "mixed"]},
+        "ceiling_cap": {"enum": ["hypothesis", "finding", "verdict"]},
+        "disclosure": {"type": "string"},
+        "sequential_findings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}}
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "title", "risk", "symptom", "source", "cost_pain", "remedy", "remedy_cost", "gain", "gain_metric", "gain_target", "refutation", "confidence", "priority"],
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "risk": {"type": "string", "description": "код каталога рисков, R1..R6"},
+        "symptom": {"type": "string"},
+        "axes": {"type": "array", "items": {"enum": ["intent", "structure", "behavior"]}},
+        "source": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+        "cost_pain": {"type": "string"},
+        "cost_spread": {"type": "string"},
+        "priority": {"type": "integer", "minimum": 0, "maximum": 10},
+        "remedy": {"type": "string"},
+        "remedy_cost": {"type": "string"},
+        "gain": {"type": "string"},
+        "gain_metric": {"type": "string"},
+        "gain_target": {"type": "string"},
+        "gain_direction": {"type": "string"},
+        "gain_actual": {"type": "string"},
+        "gain_verdict": {"type": "string"},
+        "verified_at": {"type": "string"},
+        "alternatives": {"type": "string"},
+        "refutation": {"type": "string", "description": "какой факт снял бы находку"},
+        "refutations": {"type": "array", "items": {"$ref": "#/$defs/verdict"}},
+        "confidence": {"enum": ["hypothesis", "finding", "verdict"]},
+        "status": {"type": "string"},
+        "first_seen": {"type": "string"},
+        "last_seen": {"type": "string"},
+        "reopen_trigger": {"type": "string"},
+        "files": {"type": "array", "items": {"type": "string"}, "description": "файлы, извлечённые из source — для SARIF-локаций"}
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["path", "resolved"],
+      "description": "Путь в measure.json и число, которое по нему лежит. Разрешено при экспорте: документ самодостаточен и не требует measure.json рядом.",
+      "properties": {
+        "path": {"type": "string"},
+        "resolved": {},
+        "error": {"type": "string"}
+      }
+    },
+    "verdict": {
+      "type": "object",
+      "required": ["lens", "verdict", "reason", "mode"],
+      "properties": {
+        "lens": {"type": "string"},
+        "verdict": {"enum": ["survives", "demoted", "dropped"]},
+        "reason": {"type": "string"},
+        "mode": {"enum": ["parallel", "sequential"]}
+      }
+    }
+  }
+}
