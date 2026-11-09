@@ -25,7 +25,7 @@ import sys
 from common import median as _median
 from common import pct_rank
 from common import quantile as _quantile
-from common import wilson_lower
+from common import wilson_lower, worktree_dirty
 
 # ── Пороги. Числа эмпирические, калибруются на проекте (см. measure.py, calibrate()). ──
 
@@ -615,11 +615,7 @@ def main():
         capture_output=True,
         text=True,
     ).stdout.strip()
-    dirty = bool(
-        subprocess.run(
-            ["git", "-C", repo, "status", "--porcelain"], capture_output=True, text=True
-        ).stdout.strip()
-    )
+    dirty = worktree_dirty(repo)
 
     # Ось доступна не всегда. Молчать об этом нельзя: два десятка коммитов
     # дадут числа, которые выглядят как метрика, но ничего не значат.

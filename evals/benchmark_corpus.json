@@ -232,6 +232,41 @@
       }
     },
     {
+      "id": "composition-root-inline-dirty",
+      "fixture": "composition-root",
+      "polarity": "dirty",
+      "risk": "R1",
+      "pair": "composition-root-closures-clean",
+      "note": "Тридцать обработчиков вписаны в тело одной функции: собственная цикломатика далеко за порогом McCabe.",
+      "expect": {
+        "per_function_max_at_least": {
+          "src/inline_dispatch.py": 50
+        },
+        "functions_eq": {
+          "src/inline_dispatch.py": 1
+        }
+      }
+    },
+    {
+      "id": "composition-root-closures-clean",
+      "fixture": "composition-root",
+      "polarity": "clean",
+      "risk": "R1",
+      "pair": "composition-root-inline-dirty",
+      "note": "Пара к предыдущей: те же обработчики вынесены во вложенные замыкания, корень их только регистрирует. Сумма по файлу та же, максимум по функции 3. Ложняк аудита 03.09.2026 — ветвления вложенных def суммировались во внешнюю.",
+      "expect": {
+        "cyclomatic_total_at_least": {
+          "src/build_handlers.py": 55
+        },
+        "per_function_max_at_most": {
+          "src/build_handlers.py": 4
+        },
+        "functions_eq": {
+          "src/build_handlers.py": 31
+        }
+      }
+    },
+    {
       "id": "stability-fragile-dirty",
       "fixture": "velocity-stability",
       "polarity": "dirty",

@@ -1,6 +1,6 @@
 # axes — три оси и правила расхождений
 
-Термины и правило допуска — §2, §8 SPEC.md. Поля JSON — реальный вывод
+Термины и правило допуска — `SKILL.md`, «Три оси». Поля JSON — реальный вывод
 `scripts/behavior.py` и `scripts/structure.py`, не выдуманы отдельно от кода.
 
 ## 1. Что даёт каждая ось
@@ -11,7 +11,7 @@
 | **Структура** (`structure`) | `structure.py` — граф импортов (tree-sitter или regex-fallback) | `cycles`, `cycles_type_only`, `fan_in_top`, `hubs[].fan_in/fan_out`, `complex_files[].cyclomatic`, `layers`, `external_deps_top` | какая архитектура по форме | связи, которых нет в статическом графе импортов: DI-контейнер, реестр по строковому ключу, рефлексию, dynamic import, event bus, plugin discovery — там нет import-эджа, граф этого не увидит вообще |
 | **Поведение** (`behavior`) | `behavior.py` — git log | `temporal_coupling[].degree`, `hotspots[].fix_share`, `containment.ratio`, `knowledge_risk`, `reverts` | чего архитектура стоит на практике | код без истории (`available: false` при `commits_with_code` < `thresholds.min_commits`=60); форму самого кода — только динамику правок; архитектурно верный, но нетронутый код |
 
-## 2. Таблица допуска (§2 SPEC)
+## 2. Таблица допуска
 
 | Сошлось осей | `confidence` | Что с этим делают |
 |---|---|---|
@@ -82,7 +82,7 @@ DI-контейнер, реестр обработчиков или `importlib` 
 | `package_roots` | пакетные корни — угаданные (`guess_roots`) или заданные `--roots`; сегмент пути, отбрасываемый при определении слоя/резолве импорта; считают оба скрипта независимо | structure и behavior |
 | `cycles_type_only` | SCC-циклы, существующие только через типовые рёбра `graph_all`; заведены нарочно, чтобы разорвать циклическую типизацию — не находка | structure |
 | `hotspots[].fix_share` | доля коммитов-багфиксов среди правок файла (`fix_commits / edits`) — высокий, значит файл гниёт, не просто растёт | behavior |
-| `cyclomatic_per_function_max` | максимум цикломатической сложности по одной функции файла (McCabe decisions+1); в отличие от `cyclomatic_total` сравним с порогом на функцию (см. врезку `risks.md`) | structure |
+| `cyclomatic_per_function_max` | максимум цикломатической сложности по одной функции файла (McCabe decisions+1); вложенные функции и замыкания считаются отдельными функциями и в максимум внешней не входят; в отличие от `cyclomatic_total` сравним с порогом на функцию (см. врезку `risks.md`) | structure |
 
 ## 6. Правило
 

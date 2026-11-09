@@ -284,6 +284,27 @@ CEILINGS = ("hypothesis", "finding", "verdict")
 FILE_IN_SOURCE = re.compile(r"\[file=([^\]]+)\]")
 
 
+def enum_errors(rec: dict) -> list:
+    """Поля находки с перечнем в схеме. Ловим при записи, а не в export: там
+    ошибка всплывает последним шагом, после всех дорогих агентов. Пустое —
+    не наша забота (обязательность проверена выше)."""
+    with open(SCHEMA_PATH, encoding="utf-8") as fh:
+        props = json.load(fh)["$defs"]["finding"]["properties"]
+    bad = []
+    for key, sub in props.items():
+        raw = rec.get(key)
+        if raw is None or raw == "":
+            continue
+        if "enum" in sub:
+            allowed, vals = sub["enum"], [raw]
+        elif "enum" in sub.get("items", {}):
+            allowed, vals = sub["items"]["enum"], [x for x in re.split(r"[,\s]+", str(raw)) if x]
+        else:
+            continue
+        bad += [f"{key}: {v!r} не из {allowed}" for v in vals if v not in allowed]
+    return bad
+
+
 def _lower_ceiling(a: str, b: str) -> str:
     """Потолок прогона — минимум из потолков, а не последний назначенный."""
     order = {c: i for i, c in enumerate(CEILINGS)}
@@ -760,7 +781,12 @@ def main():
         missing = [k for k in REQUIRED if not rec.get(k)]
         if missing:
             sys.exit(f"находка неполна, брак: нет полей {', '.join(missing)}")
+        bad = enum_errors(rec)
+        if bad:
+            sys.exit("находка отклонена, значение вне перечня схемы: " + " | ".join(bad))
         new = not os.path.exists(a.findings)
+        if not new and any(r.get("id") == rec["id"] for r in read_findings(a.findings)):
+            sys.exit(f"находка {rec['id']} уже есть в {a.findings}: дубль отклонён (каталог прогона занят прошлым прогоном?)")
         os.makedirs(os.path.dirname(os.path.abspath(a.findings)) or ".", exist_ok=True)
         with open(a.findings, "a", newline="", encoding="utf-8") as fh:
             w = csv.DictWriter(fh, fieldnames=FIELDS, extrasaction="ignore")

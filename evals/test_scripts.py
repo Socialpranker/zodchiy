@@ -452,6 +452,70 @@ class TestComplexityNormalization(unittest.TestCase):
         self.assertGreaterEqual(m["cyclomatic_per_function_max"], 12)
         self.assertGreater(m["worst_function_line"], 0)
 
+    def test_nested_defs_are_separate_functions(self):
+        """Композиционный корень с замыканиями: ветвления вложенных def не
+        суммируются во внешнюю функцию."""
+        code = "def build(reg):\n" + "".join(
+            f"    def h{i}(x):\n        if x == {i}:\n            return 1\n        if x > {i}:\n            return 2\n        return 0\n    reg[{i}] = h{i}\n"
+            for i in range(30)
+        ) + "    if not reg:\n        raise ValueError\n    return reg\n"
+        m = structure.complexity_via_ts(self.parser, code.encode())
+        self.assertEqual(m["functions"], 31)
+        self.assertGreaterEqual(m["cyclomatic_total"], 60)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 4, "ветвления вложенных функций утекли во внешнюю")
+
+    def test_lambda_is_a_function_boundary(self):
+        code = "def pick(xs):\n    f = lambda x: 1 if x else 2\n    g = lambda x: 3 if x else 4\n    return f, g\n"
+        m = structure.complexity_via_ts(self.parser, code.encode())
+        self.assertEqual(m["functions"], 3)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 2)
+
+    @need_grammar("javascript")
+    def test_js_function_keyword_is_not_a_function(self):
+        m = structure.complexity_via_ts(
+            structure.Parsers().get("javascript"), b"const f = function (x) { if (x) return 1; return 0; };\n"
+        )
+        self.assertEqual(m["functions"], 1, "анонимный лист `function` посчитан функцией")
+
+    @need_grammar("rust")
+    def test_rust_closures_are_separate_functions(self):
+        code = "fn build(reg: &mut Vec<Box<dyn Fn(i32) -> i32>>) {\n" + "".join(
+            f"    reg.push(Box::new(move |x| {{ if x == {i} {{ 1 }} else if x > {i} {{ 2 }} else {{ 0 }} }}));\n"
+            for i in range(30)
+        ) + "}\n"
+        m = structure.complexity_via_ts(structure.Parsers().get("rust"), code.encode())
+        self.assertGreaterEqual(m["functions"], 31)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 6, "ветвления замыканий Rust утекли во внешнюю")
+
+    @need_grammar("kotlin")
+    def test_kotlin_lambdas_are_separate_functions(self):
+        code = "fun build(reg: MutableMap<Int, (Int) -> Int>) {\n" + "".join(
+            f"    reg[{i}] = {{ x -> if (x == {i}) 1 else if (x > {i}) 2 else 0 }}\n" for i in range(30)
+        ) + "}\n"
+        m = structure.complexity_via_ts(structure.Parsers().get("kotlin"), code.encode())
+        self.assertGreaterEqual(m["functions"], 31)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 6, "ветвления лямбд Kotlin утекли во внешнюю")
+
+    @need_grammar("swift")
+    def test_swift_closures_are_separate_functions(self):
+        code = "func build(_ reg: inout [Int: (Int) -> Int]) {\n" + "".join(
+            f"    reg[{i}] = {{ x in if x == {i} {{ return 1 }} else if x > {i} {{ return 2 }} else {{ return 0 }} }}\n"
+            for i in range(30)
+        ) + "}\n"
+        m = structure.complexity_via_ts(structure.Parsers().get("swift"), code.encode())
+        self.assertGreaterEqual(m["functions"], 31)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 6, "ветвления замыканий Swift утекли во внешнюю")
+
+    @need_grammar("typescript")
+    def test_ts_arrow_closures_are_separate_functions(self):
+        code = "export function build(reg: Map<number, Fn>) {\n" + "".join(
+            f"  reg.set({i}, (x: number) => {{ if (x === {i}) return 1; if (x > {i}) return 2; return 0; }});\n"
+            for i in range(30)
+        ) + "  reg.set(99, function (x: number) { if (x) return 1; return 0; });\n  return reg;\n}\n"
+        m = structure.complexity_via_ts(structure.Parsers().get("typescript"), code.encode())
+        self.assertGreaterEqual(m["cyclomatic_total"], 60)
+        self.assertLessEqual(m["cyclomatic_per_function_max"], 6, "ветвления arrow/function expression утекли во внешнюю")
+
 
 # ── Циклы ───────────────────────────────────────────────────────────────────
 

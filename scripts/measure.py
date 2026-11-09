@@ -18,6 +18,10 @@ import os
 import subprocess
 import sys
 
+import clones
+from lint import detect_tools, run_lint
+from structure import collect_files
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -132,6 +136,18 @@ def calibrate(behavior: dict, structure: dict) -> dict:
             blocks=["temporal_coupling"] if noisy else [],
         )
 
+    # 6. Детектор клонов. Метрика без контрольной группы не отличит «дублей нет»
+    #    от «детектор слеп»: гоним заведомую пару копий и заведомо другой файл.
+    #    Недоступность детектора (нет грамматики) — не провал метрики: причина в
+    #    detail и в lint.clones.reason, потолок прогона она не опускает.
+    status, detail = clones.control()
+    add(
+        "детектор клонов различает",
+        status != "failed",
+        detail if status != "unavailable" else f"не проверено, детектор недоступен: {detail}",
+        blocks=["clones"] if status == "failed" else [],
+    )
+
     blocked = sorted({m for c in checks if not c["passed"] for m in c["blocks"]})
     return {
         "passed": not blocked,
@@ -178,6 +194,9 @@ def main():
     )
     structure = run_axis("structure.py", repo, common)
     calib = calibrate(behavior, structure)
+    tools = detect_tools()
+    hot = {h["file"] for h in behavior.get("hotspots", [])}
+    lint = run_lint(repo, collect_files(repo), hot)
 
     out = {
         "tool": "zodchiy/measure",
@@ -187,6 +206,8 @@ def main():
         "confidence": confidence_ceiling(behavior, structure, calib),
         "behavior": behavior,
         "structure": structure,
+        "tools": tools,
+        "lint": lint,
     }
     text = json.dumps(out, ensure_ascii=False, indent=2)
     if args.out:

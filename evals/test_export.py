@@ -254,5 +254,93 @@ class TestListFieldsSurviveCsv(unittest.TestCase):
             self.assertNotIn("[", row["axes"])
             self.assertEqual(row["source"], "a.b; c.d")
 
+class AddEnumGuard(unittest.TestCase):
+    """`add` сверял только обязательность: `confidence: "high"` всплывал в export,
+    на последнем шаге прогона, после всех дорогих агентов (прогон 3)."""
+
+    REC = {
+        "id": "X1", "title": "t", "risk": "R1", "symptom": "s",
+        "axes": ["structure"], "source": ["a.b"],
+        "cost_pain": "p", "remedy": "r", "remedy_cost": "rc", "gain": "g",
+        "gain_metric": "manual", "gain_target": "x", "refutation": "-",
+        "confidence": "finding", "priority": 1,
+    }
+
+    def _add(self, **over):
+        import subprocess
+        import sys
+        import tempfile
+
+        skill = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        with tempfile.TemporaryDirectory() as d:
+            csv_path = os.path.join(d, "findings.csv")
+            rec = {**self.REC, **over}
+            r = subprocess.run(
+                [sys.executable, os.path.join(skill, "zodchiy.py"), "add",
+                 "--findings", csv_path, "--json", json.dumps(rec, ensure_ascii=False)],
+                capture_output=True, text=True, timeout=120,
+            )
+            return r, os.path.exists(csv_path)
+
+    def test_confidence_outside_enum_rejected(self):
+        r, written = self._add(confidence="high")
+        self.assertNotEqual(r.returncode, 0)
+        for frag in ("confidence", "high", "hypothesis", "finding", "verdict"):
+            self.assertIn(frag, r.stderr)
+        self.assertFalse(written, "отклонённая строка не должна попасть в CSV")
+
+    def test_axes_outside_enum_rejected(self):
+        r, written = self._add(axes=["structure", "smell"])
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("axes", r.stderr)
+        self.assertIn("smell", r.stderr)
+        self.assertFalse(written)
+
+    def test_valid_confidence_accepted(self):
+        for v in ("hypothesis", "finding", "verdict"):
+            r, written = self._add(confidence=v)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertTrue(written)
+
+    def test_empty_confidence_stays_required_error(self):
+        # пустое значение — не «вне перечня»: его ловит прежняя проверка обязательных
+        # полей (schema требует confidence, пустое упало бы в export), enum-сообщения нет
+        r, written = self._add(confidence="")
+        self.assertNotEqual(r.returncode, 0)
+        self.assertIn("нет полей confidence", r.stderr)
+        self.assertNotIn("не из", r.stderr)
+        self.assertFalse(written)
+
+
+class AddDuplicateId(unittest.TestCase):
+    """Повторный `add` того же id дописывал вторую строку: срез и judge читали старую,
+    отчёт падал у писаря после всего прогона (финальное ревью, I5)."""
+
+    def test_duplicate_id_is_rejected_and_file_untouched(self):
+        import subprocess
+        import sys
+        import tempfile
+
+        skill = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        rec = dict(AddEnumGuard.REC)
+
+        def add(path, **over):
+            return subprocess.run(
+                [sys.executable, os.path.join(skill, "zodchiy.py"), "add",
+                 "--findings", path, "--json", json.dumps({**rec, **over}, ensure_ascii=False)],
+                capture_output=True, text=True, timeout=120,
+            )
+
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "findings.csv")
+            self.assertEqual(add(path).returncode, 0)
+            before = open(path, encoding="utf-8").read()
+            r = add(path, title="другая находка с тем же id")
+            self.assertNotEqual(r.returncode, 0)
+            self.assertIn("X1", r.stderr)
+            self.assertEqual(open(path, encoding="utf-8").read(), before)
+            self.assertEqual(add(path, id="X2").returncode, 0)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
