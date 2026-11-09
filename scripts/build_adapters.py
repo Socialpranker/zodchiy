@@ -80,7 +80,7 @@ def section(md: str, heading: str) -> str:
 def absolutise(text: str, home: str) -> str:
     """Относительные пути доктрины — в абсолютные: чужой харнесс запускается
     не из каталога скилла и `references/risks.md` у него не разрешится."""
-    return re.sub(r"(?<![\w/~.])(references|evals|scripts)/", rf"{home}/\1/", text)
+    return re.sub(r"(?<![\w/~.])(references|evals|scripts|workflows|schema)/", rf"{home}/\1/", text)
 
 
 def steps(md: str) -> str:

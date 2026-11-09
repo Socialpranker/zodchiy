@@ -118,8 +118,8 @@ The rule this tool applies to other people's code applies to its own claims.
 
 **Verified.**
 
-- 171 unit tests, green
-- 14 frozen end-to-end cases against ground truth, each `dirty` case
+- 433 unit tests, green
+- 16 frozen end-to-end cases against ground truth, each `dirty` case
   paired with a `clean` one — without the pair, "found N" cannot be told apart
   from "found N plus ten false ones" (method borrowed from OWASP Benchmark)
 - degenerate repositories: no commits, one commit, non-UTF-8 file, detached

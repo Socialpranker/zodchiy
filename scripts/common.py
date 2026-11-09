@@ -10,6 +10,9 @@
 from __future__ import annotations
 
 import statistics
+import subprocess
+
+RUN_DIR = ".zodchiy"
 
 
 def pct_rank(values: list[float]):
@@ -62,3 +65,22 @@ def wilson_lower(k: int, n: int, z: float = 1.96) -> float:
     center = (p + z * z / (2 * n)) / d
     margin = z * ((p * (1 - p) + z * z / (4 * n)) / n) ** 0.5 / d
     return round(max(0.0, center - margin), 3)
+
+
+def worktree_dirty(repo: str) -> bool:
+    """Есть ли в рабочем дереве незакоммиченное, кроме каталога прогона `.zodchiy/`.
+
+    Прогон сам кладёт туда замер, срезы и отчёт; в репозитории, где `.zodchiy/`
+    не в `.gitignore`, это делало чистое дерево «грязным» с первой же секунды.
+    """
+    out = subprocess.run(
+        ["git", "-C", repo, "status", "--porcelain", "--untracked-files=normal"],
+        capture_output=True,
+        text=True,
+    ).stdout
+    for line in out.splitlines():
+        # «XY путь» или «XY старый -> новый»; путь мог попасть в кавычки
+        paths = [p.strip().strip('"') for p in line[3:].split(" -> ")]
+        if not all(RUN_DIR in p.split("/") for p in paths):
+            return True
+    return False

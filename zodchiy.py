@@ -34,6 +34,12 @@ ROUTES: dict[str, tuple[str, list[str], str]] = {
     "export": ("ledger", ["export"], "находки машиночитаемо: json по схеме или sarif"),
     "behavior": ("behavior", [], "только поведенческая ось — отладка"),
     "structure": ("structure", [], "только структурная ось — отладка"),
+    "lint": ("lint", [], "только ruff-ось (simplicity/width/perf) — отладка"),
+    "slice": ("slice", [], "срез measure.json под одну находку, ≤ 8 КБ"),
+    "trial": ("trial", [], "проба варианта в worktree: prepare | judge | cleanup"),
+    "report": ("report", [], "отчёт из JSON: html | md | plan фаз"),
+    "scribe": ("scribe", [], "режим refactor: файлы прогона из сохранённого промпта писаря"),
+    "prune": ("prune", [], "мёртвый код: scan | instrument | collect | strip"),
 }
 
 

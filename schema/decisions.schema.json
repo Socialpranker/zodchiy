@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://zodchiy.dev/schema/decisions.schema.json",
+  "title": "zodchiy decisions document",
+  "description": "Решения режима refactor: что выбрал лид по каждой находке и что показала проба. Пишется кодом из ответов ролей и вывода `trial`; отчёт и план читают только его. Поля с nullable-значением описаны без `type` — валидатор скилла принимает один тип на поле.",
+  "type": "object",
+  "required": ["run", "findings"],
+  "properties": {
+    "run": {
+      "type": "object",
+      "description": "Паспорт прогона.",
+      "properties": {
+        "head": {"type": "string", "description": "HEAD, от которого построены пробы"},
+        "base_dirty": {"type": "boolean", "description": "в рабочем дереве были незакоммиченные правки: пробы их не включают"},
+        "mode": {"enum": ["workflow", "agents", "sequential"], "description": "как физически шёл прогон (спека §4)"},
+        "date": {"type": "string"},
+        "skipped": {
+          "type": "array",
+          "description": "находки, не дошедшие до отчёта из-за сбоя этапа; отчёт показывает число, id и причину",
+          "items": {
+            "type": "object",
+            "required": ["id", "reason"],
+            "properties": {"id": {"type": "string"}, "reason": {"type": "string"}}
+          }
+        },
+        "checklist": {
+          "type": "object",
+          "description": "чеклист прогона, считает код: сколько пунктов пройдено из скольки; штамп отчёта печатает как есть",
+          "properties": {
+            "passed": {"type": "integer", "minimum": 0},
+            "total": {"type": "integer", "minimum": 0}
+          }
+        },
+        "candidates": {
+          "type": "object",
+          "description": "отсечка аналитика: сколько кандидатов нашёл, сколько взято в прогон, сколько отброшено; отчёт печатает как есть",
+          "properties": {
+            "total": {"type": "integer", "minimum": 0},
+            "taken": {"type": "integer", "minimum": 0},
+            "dropped": {"type": "integer", "minimum": 0}
+          }
+        },
+        "cost": {
+          "type": "object",
+          "description": "цена прогона из счётчиков харнесса; отчёт ничего не считает сам",
+          "properties": {
+            "tokens": {"type": "integer", "minimum": 0},
+            "agents": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "findings": {"type": "array", "items": {"$ref": "#/$defs/finding"}}
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["id", "class", "mode", "variants", "lead"],
+      "properties": {
+        "id": {"type": "string"},
+        "class": {"enum": ["quick-fix", "scheduled", "architectural"], "description": "architectural — trial идёт только по первой фазе"},
+        "mode": {"enum": ["workflow", "agents", "sequential"], "description": "как шла роль; без умолчания"},
+        "variants": {"type": "array", "items": {"type": "object"}},
+        "slice_dropped": {"type": "object", "description": "что срез замера обрезал под бюджет 8 КБ: `<имя>_dropped` → сколько отброшено; только ненулевые. Ключи — из slice.py, значения — целые ≥ 0"},
+        "lead": {"$ref": "#/$defs/lead"},
+        "trial": {"$ref": "#/$defs/trial"}
+      }
+    },
+    "lead": {
+      "type": "object",
+      "required": ["chosen", "reason"],
+      "properties": {
+        "chosen": {"type": "string"},
+        "reserve": {"type": "string"},
+        "reason": {"type": "string"},
+        "questions": {"type": "array", "items": {"type": "string"}, "description": "что лид решить не вправе: фаза с открытым вопросом не идёт в trial"},
+        "order": {"type": "integer", "minimum": 0},
+        "depends_on": {"type": "array", "items": {"type": "string"}},
+        "phases": {"type": "array", "items": {"$ref": "#/$defs/phase"}, "description": "для architectural: лечение, разрезанное на фазы; trial идёт по первой, остальные ждут её принятия"},
+        "remedy_files": {"type": "integer", "minimum": 0, "description": "L4, прогноз: файлов в диффе выбранного варианта; считает код сценария, не модель"},
+        "pain": {"description": "L4: боль среза, файлов/квартал (pain.pain_files_per_quarter); null — данных нет"},
+        "payback": {"description": "L4, прогноз: remedy_files ÷ pain, кварталов; null — боли нет. Факт пробы — в trial.payback"},
+        "payback_max_quarters": {"type": "number", "description": "порог окупаемости из среза"},
+        "payback_verdict": {"enum": ["ok", "too_costly", "cold"], "description": "не ok — проба не запускается, находка идёт в «Не входит»"}
+      }
+    },
+    "phase": {
+      "type": "object",
+      "required": ["title"],
+      "properties": {
+        "title": {"type": "string"},
+        "steps": {"type": "array", "items": {"type": "string"}},
+        "risk": {"type": "string"}
+      }
+    },
+    "trial": {
+      "type": "object",
+      "description": "Выход `trial judge` плюс поля `trial prepare`.",
+      "required": ["checks", "status"],
+      "properties": {
+        "checks": {"type": "array", "items": {"$ref": "#/$defs/check"}},
+        "gain_metric": {},
+        "gain_before": {},
+        "gain_after": {},
+        "gain_target": {},
+        "gain_hit": {"type": "boolean"},
+        "gain_reason": {},
+        "before_source": {"description": "clean_base | given | repo_as_is — откуда взят замер «до»"},
+        "remedy_files": {"type": "integer", "minimum": 0},
+        "payback": {},
+        "payback_verdict": {"enum": ["ok", "too_costly", "cold"]},
+        "status": {"enum": ["accepted", "rejected", "unverified"]},
+        "reasons": {"type": "array", "items": {"type": "string"}, "description": "причины не-accepted и оговорки, по строке"},
+        "variant": {},
+        "branch": {"type": "string"},
+        "branch_requested": {"type": "string"},
+        "branch_collision": {"type": "boolean", "description": "ветка zodchiy/F<n>-<slug> уже была: взят суффикс -2, -3…"}
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": ["name", "status"],
+      "properties": {
+        "name": {"type": "string"},
+        "status": {"enum": ["pass", "fail", "unverified"]},
+        "reason": {"type": "string"},
+        "tail": {"type": "string"}
+      }
+    }
+  }
+}

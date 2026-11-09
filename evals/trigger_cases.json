@@ -1,5 +1,5 @@
 {
-  "_doc": "Trigger-eval на frontmatter `description`. Описание зодчего ни разу не проверялось эмпирически — только вычитывалось глазами, а это ровно тот класс ошибки, под который у skill-creator заведён отдельный харнесс. Половина should-кейсов сформулирована БЕЗ ключевых слов «архитектура»/«техдолг»: описание, которое ловит только прямые формулировки, на живом разговоре молчит. Прогон требует модели — см. README, раздел «Trigger-слой».",
+  "_doc": "Trigger-eval на frontmatter `description`. Прогон 01.09.2026 (trigger_results.json) сделан на более раннем тексте description, не на текущем: перед выводами о покрытии его нужно повторить. Половина should-кейсов сформулирована БЕЗ ключевых слов «архитектура»/«техдолг»: описание, которое ловит только прямые формулировки, на живом разговоре молчит. Кейсы p13, p14, e01, n09, n10 добавлены 10.10.2026 как ещё не прогнанные (режимы gate/refactor, приманка «архитектура» из соседней области, граница со скиллом simplify, английская формулировка); route_to=simplify отсутствует в trigger_roster.json. Прогон требует модели — см. README, раздел «Trigger-слой».",
   "split": "train — на них правится description; test — по ним меряется, не подглядывая",
   "cases": [
     {"id": "t01", "split": "train", "should_trigger": true, "prompt": "Разбери архитектуру этого репозитория", "why": "прямая формулировка из description"},
@@ -14,6 +14,9 @@
     {"id": "t10", "split": "test", "should_trigger": true, "prompt": "Хочу понять, во что обойдётся вынести биллинг в отдельный сервис", "why": "непрямая: планирование миграции"},
     {"id": "t11", "split": "test", "should_trigger": true, "prompt": "Новичок входит в проект месяц. Что не так с кодом?", "why": "непрямая: R1, когнитивная перегрузка"},
     {"id": "t12", "split": "test", "should_trigger": true, "prompt": "Собираемся делать большой рефакторинг домена — с чего начать", "why": "прямо названо в description"},
+    {"id": "p13", "split": "test", "should_trigger": true, "prompt": "Настрой в CI проверку, чтобы метрики связности не ухудшались от коммита к коммиту", "why": "режим gate: ни одного ключевого слова, но это «не стало ли хуже»"},
+    {"id": "p14", "split": "test", "should_trigger": true, "prompt": "Спланируй упрощение пакета payments по истории правок", "why": "режим refactor: масштаб пакета и история git, не дифф"},
+    {"id": "e01", "split": "test", "should_trigger": true, "prompt": "Is this codebase worth rewriting, or can we fix it incrementally?", "why": "английская формулировка «стоит ли переписывать»; скилл заявлен переносимым"},
 
     {"id": "n01", "split": "train", "should_trigger": false, "prompt": "Проверь мой диф перед коммитом", "route_to": "code-review", "why": "ревью изменений, не строения"},
     {"id": "n02", "split": "train", "should_trigger": false, "prompt": "Просканируй проект на уязвимости", "route_to": "fynd-dyrka", "why": "безопасность"},
@@ -22,6 +25,8 @@
     {"id": "n05", "split": "test", "should_trigger": false, "prompt": "Дашборд выглядит шаблонно, переделай", "route_to": "design-modern", "why": "UI"},
     {"id": "n06", "split": "test", "should_trigger": false, "prompt": "Добавь колонку status в таблицу payments и напиши миграцию", "route_to": "python-db", "why": "точечная правка БД"},
     {"id": "n07", "split": "test", "should_trigger": false, "prompt": "Обнови зависимости и пересобери lock-файл", "why": "рутина сопровождения"},
-    {"id": "n08", "split": "test", "should_trigger": false, "prompt": "Напиши README для этого проекта", "why": "документация; чтение репо ≠ аудит"}
+    {"id": "n08", "split": "test", "should_trigger": false, "prompt": "Напиши README для этого проекта", "why": "документация; чтение репо ≠ аудит"},
+    {"id": "n09", "split": "test", "should_trigger": false, "prompt": "Проверь архитектуру авторизации на дыры и утечки", "route_to": "fynd-dyrka", "why": "приманка: слово «архитектура», но вопрос про безопасность"},
+    {"id": "n10", "split": "test", "should_trigger": false, "prompt": "Упрости функцию, которую я только что написал, — она слишком длинная", "route_to": "simplify", "why": "граница refactor: правка свежего дифа, измерять историю незачем"}
   ]
 }

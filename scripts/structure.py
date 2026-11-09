@@ -307,11 +307,38 @@ FUNC_NODES = (
     "function_expression",
     "constructor_declaration",
     "func_literal",
+    "lambda",  # Python
+    "closure_expression",  # Rust
+    "lambda_literal",  # Kotlin, Swift
 )
 
 
-def _is_func(t: str) -> bool:
-    return t in FUNC_NODES or ("function" in t and "type" not in t)
+def _is_func(node) -> bool:
+    # Только именованные узлы: у JS/TS ключевое слово `function` — анонимный
+    # лист с типом "function", и подстрочная эвристика считала его функцией.
+    t = node.type
+    return node.is_named and (t in FUNC_NODES or ("function" in t and "type" not in t))
+
+
+def _own_branches(node) -> int:
+    """Ветвления функции БЕЗ вложенных функций.
+
+    Вложенный def / lambda / arrow / замыкание — отдельная функция со своей
+    цикломатикой; обход дальше неё не идёт. Иначе композиционный корень,
+    регистрирующий тридцать замыканий, получает сумму их ветвлений: на аудите
+    стороннего проекта 03.09.2026 такой корень показал 180 при собственных 23,
+    и порог McCabe на функцию вынес ложную находку.
+    """
+    count = 0
+    stack = list(node.children)
+    while stack:
+        c = stack.pop()
+        if _is_func(c):
+            continue
+        if c.type in BRANCH_NODES:
+            count += 1
+        stack.extend(c.children)
+    return count
 
 
 def complexity_via_ts(parser, src: bytes) -> dict:
@@ -320,7 +347,8 @@ def complexity_via_ts(parser, src: bytes) -> dict:
     McCabe (1976) задаёт порог на ФУНКЦИЮ, не на файл: сумма по файлу растёт
     с его длиной и сравнивать её с «>10» бессмысленно. Оба числа отдаются
     отдельно — `per_function_max` сопоставим с порогом, `total` годится только
-    для ранжирования файлов между собой.
+    для ранжирования файлов между собой. Вложенные функции считаются
+    отдельными и в максимум внешней не входят.
     """
     tree = parser.parse(src)
     total, funcs, max_depth = 0, 0, 0
@@ -333,9 +361,9 @@ def complexity_via_ts(parser, src: bytes) -> dict:
             total += 1
         nd = d + 1 if n.type in BRANCH_NODES else d
         max_depth = max(max_depth, nd)
-        if _is_func(n.type):
+        if _is_func(n):
             funcs += 1
-            inner = sum(1 for c in walk(n) if c.type in BRANCH_NODES) + 1
+            inner = _own_branches(n) + 1
             if inner > per_func_max:
                 per_func_max, worst_line = inner, n.start_point[0] + 1
         stack.extend((c, nd) for c in n.children)

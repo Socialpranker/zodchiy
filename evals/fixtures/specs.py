@@ -288,6 +288,47 @@ FIXTURES: dict[str, dict] = {
         },
         "plan": _repeat("feat: tweak {i}", ["src/simple_many.py"], 4),
     },
+    # ── Сложность: композиционный корень с замыканиями невиновен ────────────
+    "composition-root": {
+        "doc": (
+            "Одна и та же логика тридцати обработчиков: в dirty она вписана в тело "
+            "одной функции, в clean — вынесена в тридцать вложенных замыканий, "
+            "которые корень лишь регистрирует. Сумма по файлу та же с точностью "
+            "до одного ветвления; порог McCabe применим только к собственному "
+            "телу функции."
+        ),
+        "files": {
+            "src/inline_dispatch.py": (
+                "def dispatch(kind, x):\n"
+                + "".join(
+                    f"    if kind == {i}:\n"
+                    f"        if x > {i}:\n"
+                    f"            return 2\n"
+                    f"        return 1\n"
+                    for i in range(30)
+                )
+                + "    return 0\n"
+            ),
+            "src/build_handlers.py": (
+                "def build_handlers(registry):\n"
+                + "".join(
+                    f"    def handle_{i}(x):\n"
+                    f"        if x == {i}:\n"
+                    f"            return 1\n"
+                    f"        if x > {i}:\n"
+                    f"            return 2\n"
+                    f"        return 0\n"
+                    f"\n"
+                    f"    registry[{i}] = handle_{i}\n"
+                    for i in range(30)
+                )
+                + "    if not registry:\n"
+                + "        raise ValueError('empty registry')\n"
+                + "    return registry\n"
+            ),
+        },
+        "plan": _repeat("feat: handler {i}", ["src/build_handlers.py"], 4),
+    },
 }
 
 

@@ -73,6 +73,12 @@ class TestPaths(unittest.TestCase):
             "см. `/opt/z/references/risks.md`",
         )
 
+    def test_workflows_and_schema_paths_become_absolute(self):
+        self.assertEqual(
+            ba.absolutise("`workflows/refactor.js`, `schema/decisions.schema.json`", "/opt/z"),
+            "`/opt/z/workflows/refactor.js`, `/opt/z/schema/decisions.schema.json`",
+        )
+
     def test_url_is_not_rewritten(self):
         url = "<https://example.com/docs/references/risks.md>"
         self.assertEqual(ba.absolutise(url, "/opt/z"), url)
@@ -86,7 +92,7 @@ class TestPaths(unittest.TestCase):
         for name, text in files.items():
             if name == "README.md":
                 continue
-            for m in re.finditer(r"(?<![\w/~.])(references|scripts|evals)/[\w.-]+", text):
+            for m in re.finditer(r"(?<![\w/~.])(references|scripts|evals|workflows|schema)/[\w.-]+", text):
                 leaks.append(f"{name}: {m.group(0)}")
         self.assertEqual(leaks, [], "относительный путь в адаптере не разрешится")
 
