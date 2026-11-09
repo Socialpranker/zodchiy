@@ -27,7 +27,11 @@ sys.path.insert(0, os.path.join(SKILL, "scripts"))
 
 import common  # noqa: E402
 import ledger  # noqa: E402
+import lint  # noqa: E402
 import trial  # noqa: E402
+
+# Вердикт trial сравнивает метрики замера, а без tree-sitter замер их не даёт.
+need_ts = unittest.skipUnless(lint.detect_tools()["tree_sitter"]["available"], "tree-sitter не установлен")
 
 DAY = 86400
 PY = sys.executable
@@ -306,6 +310,7 @@ class TestJudge(TrialBase):
             **kw,
         )
 
+    @need_ts
     def test_trial_accepts_hit(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_GOOD)
@@ -327,6 +332,7 @@ class TestJudge(TrialBase):
         # абсолютный путь репо в JSON не течёт
         self.assertNotIn(self.repo, json.dumps(res, ensure_ascii=False))
 
+    @need_ts
     def test_trial_rejects_miss(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_MISS)
@@ -336,6 +342,7 @@ class TestJudge(TrialBase):
         self.assertEqual(res["gain_after"], 7)
         self.assertEqual(res["status"], "rejected")
 
+    @need_ts
     def test_trial_rejects_red_tests(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_BROKEN)
@@ -387,6 +394,7 @@ class TestJudge(TrialBase):
         self.assertEqual([c["status"] for c in res["checks"]], ["unverified", "fail"])
         self.assertEqual(res["status"], "rejected")
 
+    @need_ts
     def test_trial_no_tests_unverified(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_GOOD)
@@ -395,6 +403,7 @@ class TestJudge(TrialBase):
         self.assertIs(res["gain_hit"], True)
         self.assertEqual(res["status"], "unverified")
 
+    @need_ts
     def test_only_static_checks_is_unverified_not_accepted(self):
         # ruff F821 не проверяет поведение: gain достигнут, но принимать без тестов нельзя (спека §4)
         info = self.prep()
@@ -415,6 +424,7 @@ class TestJudge(TrialBase):
         for cmd in (["ruff", "check", "."], ["lint-imports"], ["npm", "run", "lint"], ["npm", "run", "build"]):
             self.assertFalse(trial.is_test_check({"cmd": cmd}), cmd)
 
+    @need_ts
     def test_partial_phase_miss_is_unverified_not_rejected(self):
         # architectural: проба покрывает фазу 1, цель находки — вся находка
         info = self.prep()
@@ -425,6 +435,7 @@ class TestJudge(TrialBase):
         self.assertIn("фаза 1 из 3: цель находки не применима к фазе", res["reasons"])
         self.assertNotIn("gain target not reached", res["reasons"])
 
+    @need_ts
     def test_partial_phase_hit_is_accepted(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_GOOD)
@@ -436,6 +447,7 @@ class TestJudge(TrialBase):
         res = self.judge(info, FINDING, [UNITTEST], phase_of="?")
         self.assertEqual(res["status"], "rejected")
 
+    @need_ts
     def test_single_phase_or_no_phase_keeps_the_target(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_MISS)
@@ -887,6 +899,7 @@ class TestEmptyAndDirection(TrialBase):
         self.assertEqual(res["status"], "rejected")
         self.assertIn("empty diff: variant changed nothing", res["reasons"])
 
+    @need_ts
     def test_direction_inferred_down_makes_unchanged_metric_a_miss(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_ORIG + "# косметика\n")
@@ -896,6 +909,7 @@ class TestEmptyAndDirection(TrialBase):
         self.assertIs(res["gain_hit"], False)
         self.assertEqual(res["status"], "rejected")
 
+    @need_ts
     def test_direction_inferred_down_hit(self):
         info = self.prep()
         write(os.path.join(info["worktree"], "src", "a.py"), A_GOOD)
@@ -915,6 +929,7 @@ class TestEmptyAndDirection(TrialBase):
 
 
 class TestBaseMeasure(TrialBase):
+    @need_ts
     def test_gain_before_comes_from_clean_head_not_dirty_tree(self):
         write(os.path.join(self.repo, "src", "a.py"), A_GOOD)  # у пользователя не закоммичено
         info = self.prep()
