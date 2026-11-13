@@ -1,3 +1,5 @@
+<img src="assets/logo.svg" width="96" height="96" alt="zodchiy logo">
+
 # zodchiy
 
 **An architectural audit where a finding is admissible only once its cost has
