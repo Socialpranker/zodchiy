@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="zodchiy logo">
+<rect width="256" height="256" rx="56" fill="#14161B"/>
+<g fill="none" stroke="#F2EFE8" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+<path d="M66 196V120a62 62 0 0 1 124 0v76"/>
+<path d="M98 196V124a30 30 0 0 1 60 0v72"/>
+<polygon points="114,64 142,64 148,92 108,92" fill="#E8A15B" stroke="#E8A15B" stroke-width="6"/>
+</g>
+</svg>
